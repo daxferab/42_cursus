@@ -11,3 +11,15 @@ The goal of these exercises is to introduce students to OOP through short exerci
 Each exercise has its own Makefile that will automatically compile every program, creating an output file. This file can be executed by the user to test the exercise's functionality.
 
 ## Exercises
+
+### Exercise 0️⃣: Start with a few functions
+
+#### Concepts learnt
+
+### Exercise 1️⃣: Iter
+
+#### Concepts learnt
+
+### Exercise 2️⃣: Array
+
+#### Concepts learnt
