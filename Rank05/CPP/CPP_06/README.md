@@ -14,12 +14,12 @@ Each exercise has its own Makefile that will automatically compile every program
 
 ### Exercise 0️⃣: Conversion of scalar types
 
-#### Concepts learnt
+#### 💡Concepts learnt
 
 ### Exercise 1️⃣: Serialization
 
-#### Concepts learnt
+#### 💡Concepts learnt
 
 ### Exercise 2️⃣: Identify real type
 
-#### Concepts learnt
+#### 💡Concepts learnt

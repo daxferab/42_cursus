@@ -14,12 +14,12 @@ Each exercise has its own Makefile that will automatically compile every program
 
 ### Exercise 0️⃣: Start with a few functions
 
-#### Concepts learnt
+#### 💡Concepts learnt
 
 ### Exercise 1️⃣: Iter
 
-#### Concepts learnt
+#### 💡Concepts learnt
 
 ### Exercise 2️⃣: Array
 
-#### Concepts learnt
+#### 💡Concepts learnt
