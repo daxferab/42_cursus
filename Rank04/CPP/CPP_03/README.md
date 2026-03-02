@@ -14,16 +14,16 @@ Each exercise has its own Makefile that will automatically compile every program
 
 ### Exercise 0️⃣: Aaaaand... OPEN!
 
-#### Concepts learnt
+#### 💡Concepts learnt
 
 ### Exercise 1️⃣: Serena, my love!
 
-#### Concepts learnt
+#### 💡Concepts learnt
 
 ### Exercise 2️⃣: Repetitive work
 
-#### Concepts learnt
+#### 💡Concepts learnt
 
 ### Exercise 3️⃣: Now it's weird!
 
-#### Concepts learnt
+#### 💡Concepts learnt

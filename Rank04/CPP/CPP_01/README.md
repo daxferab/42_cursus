@@ -17,14 +17,14 @@ Create a **Zombie** class with a function that announces itself.\
 Create the function `newZombie(std::string name)` that creates a zombie, names it and returns it.\
 Create the function `randomChump(sdt::string name)` that creates a zombie, names it, and makes it announce itself. It returns nothing.
 
-#### Concepts learnt
+#### 💡Concepts learnt
 - In the `newZombie` function, the object Zombie is created with the **new** keyword, which allocates memory in heap so it can be used outside the function scope. It must be deleted by the user to prevent memory leaks.
 - In the `randomChump` function, the object Zombie is created in stack. It's automatically deleted at the end of the function.
 
 ### Exercise 1️⃣: Moar brainz!
 Create the function `zombieHorde(int N, sdt::string name)` that allocates N Zombies and names them. It returns a pointer to the first one.
 
-#### Concepts learnt
+#### 💡Concepts learnt
 - To create a heap allocated object array: `new Object[N]`
 - To delete an entire object array: `delete[] objName`
 
@@ -36,7 +36,7 @@ Write a program that contains:
 Print the memory address and the value of the string.\
 Print the memory address held by and the value pointed to of the PTR and the REF.
 
-#### Concepts learnt
+#### 💡Concepts learnt
 - A pointer is a variable that stores the memory location of the variable its pointed to.
 - A reference to a variable is like an "alias" to that variable.
 
@@ -47,7 +47,7 @@ Implement the **HumanA** and **HumanB** classes:
 - They can `attack()`
 - **HumanA** takes the weapon in its constructor, **HumanB** doesn't, so it won't always be armed
 
-#### Concepts learnt
+#### 💡Concepts learnt
 Passing by reference vs pointer:
 - HumanB might not have a weapon, so its attribute is a pointer that can be NULL.
 - HumanA must be always armed, so it's passed by reference since it has to be assigned when instantiating the object.
@@ -55,7 +55,7 @@ Passing by reference vs pointer:
 ### Exercise 4️⃣: Sed is for losers
 Create a program that takes a file *example* and two words as parameters. It must create a file *example.replace*, with the content of the original file but replacing every instance of the second parameter with the third parameter.
 
-#### Concepts learnt
+#### 💡Concepts learnt
 - Opening a file with `std::ifstream file(filename)`
 - Creating a new file with `std::ofstream newFile(newfilename)`
 - Closing a file with `file.close()`
@@ -73,7 +73,7 @@ the levels can be\
 "DEBUG" "INFO" "WARNING" and "ERROR"\
 Each one outputs a different message. If a different word is passed, nothing happens.
 
-#### Concepts learnt
+#### 💡Concepts learnt
 Pointers to member functions store the address of a function inside a class.\
 `void (Class::*varname)(void) = &Class::function`\
 This pointers need to know the class to which the pointed function belongs.\
@@ -83,7 +83,7 @@ It's used like a normal member function: `this->*varname()`
 Same as exercise 5, but this time when a LEVEL is passed, the function outputs its message and the next levels' messages.\
 For example, if the level is WARNING, it outputs the WARNING and ERROR messages.
 
-#### Concepts learnt
+#### 💡Concepts learnt
 The **switch** structure:
 ```
 switch (num)

@@ -14,16 +14,16 @@ Each exercise has its own Makefile that will automatically compile every program
 
 ### Exercise 0️⃣: Polymorphism
 
-#### Concepts learnt
+#### 💡Concepts learnt
 
 ### Exercise 1️⃣: I don't want to set the world on fire
 
-#### Concepts learnt
+#### 💡Concepts learnt
 
 ### Exercise 2️⃣: Abstract class
 
-#### Concepts learnt
+#### 💡Concepts learnt
 
 ### Exercise 3️⃣: Interface & recap
 
-#### Concepts learnt
+#### 💡Concepts learnt
