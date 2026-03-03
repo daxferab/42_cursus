@@ -72,17 +72,18 @@ The "<<" overload:\
 Add the following to the Fixed class:\
 - The 6 comparison operators: >, <, >=, <=, ==, and !=.
 - The 4 arithmetic operators: +, -, *, and /.
-- The 4 increment/decrement operators, which will increase or decrease the fixed-point value by
-the smallest representable ϵ, such that 1 + ϵ > 1.
+- The 4 increment/decrement operators, which will increase or decrease the fixed-point value by the smallest representable ϵ, such that 1 + ϵ > 1.
 
 Add these four public overloaded member functions to your class:
 - Two static member functions `min` that take two references to:
     - Fixed-point numbers
     - Constant fixed-point numbers
+
     and return a reference to the smallest one.
 - Two static member functions `max` that take two references to:
     - Fixed-point numbers
     - Constant fixed-point numbers
+
     and return a reference to the greatest one.
 
 #### 💡Concepts learnt
@@ -95,5 +96,26 @@ Since the operator sign for post and pre are the same (++ and --), we distinguis
 `Class	&Class::operator++(int)` and `Class	&Class::operator--(int)`\`
 
 ### Exercise 3️⃣: BSP
+Use the Fixed class to implement a function that indicates wether a point is inside a triangle or not.\
+Create a Point class that represent a point in a 2D space (its coords are Fixed). It should have a constructor that initializes the point to the two const floats passed.\
+Implement the next function:\
+`bool bsp( Point const a, Point const b, Point const c, Point const point)`\
+Being *a*, *b* and *c* the vertices of the triangle and *point* the point to check.
 
 #### 💡Concepts learnt
+P belongs to a triangle if, for each vertice, P lays on the same side of the line formed by the other two points as that vertice.\
+Triangle: **(a, b, c)** Point: **P**
+If *P* is:
+- in the same side of AB than *c*
+- in the same side of BC than *a*
+- in the same side of CA than *b*
+
+P is inside the triangle, else, P is outside of it.
+
+In maths, the side of **AB** where a point **P** lays can be determined by the next multiplication:\
+`(B - A) * (P - A)`\
+The results can be:
+- All sides <= 0 or >= 0 : all on the same side (inside the triangle).
+- Some <0 and some >0 : outside the triangle.
+
+The vertices must be followed only in one direction (a-b-c, c-b-a...).
