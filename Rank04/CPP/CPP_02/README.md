@@ -16,8 +16,7 @@ Each exercise has its own Makefile that will automatically compile every program
 Create a class **Fixed** in Orthodox Canonical Form (every class will be OCF from now on).\
 It will have two private attributes: an int (fixed-point number value) and an static const int (the number of fractional bits, set to 8).\
 It will also have public members (apart from the OCF ones):\
-`getRawBits(void) const`, that returns the raw value of the fixed-point\
-`setRawBits(int const raw)` that sets it
+Code a **getter** and a **setter** for the raw bits.
 
 #### 💡Concepts learnt
 **Orthodox Canonical Form:**\
