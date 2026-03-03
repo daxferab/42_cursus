@@ -24,8 +24,12 @@ It will also have public members (apart from the OCF ones):\
 A class in OCF has the next public members:\
 Default constructor: `Class()`\
 Copy constructor: `Class(const Class &other)`\
-Assignment operator: `Class &operator=(const Class &other)`\
+Overload assignment operator: `Class &operator=(const Class &other)`\
 Destructor: `~Class()`
+
+An "overloaded operator" function is a function that defines the behave of an operator such as =, <, >...\
+The syntaxis is `operatorX(...)`, being X the operator sign.\
+In the assignment operator function, the class **other** changes its parameters to equal **this** . the function returns a reference to the changed class.
 
 A fixed point value, is a binary number with a binary point, similar to a decimal point in decimal notation.\
 It acts as a divider between the decimal and the fractional part of a number.\
@@ -39,7 +43,7 @@ Function that takes a float and converts it to a fixed-point value.\
 `float toFloat( void ) const`: converts the fixed-point value to a floating-point value.\
 `int toInt( void ) const`: converts the fixed-point value to an integer value.
 
-Add the following function to the Fixed class files:
+Add the following function to the Fixed class files:\
 Overload of the insertion («) operator that inserts a floating-point representation
 of the fixed-point number into the output stream object passed as a parameter.
 
@@ -82,6 +86,13 @@ Add these four public overloaded member functions to your class:
     and return a reference to the greatest one.
 
 #### 💡Concepts learnt
+Syntaxis of the comparison and arithmetic operators:\
+`Class  &operatorX(const Class &other)`
+
+Syntaxis of the increment / decrement operators:\
+`Class	&Class::operator++()` and `Class	&Class::operator--()`\
+Since the operator sign for post and pre are the same (++ and --), we distinguish the functions by passing a dummy int parameter in the postfix version.\
+`Class	&Class::operator++(int)` and `Class	&Class::operator--(int)`\`
 
 ### Exercise 3️⃣: BSP
 
