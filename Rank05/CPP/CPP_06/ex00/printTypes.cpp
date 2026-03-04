@@ -18,7 +18,7 @@ void	printChar(float f)
 void	printInt(float f)
 {
 	std::cout << "int: ";
-	if (std::isnan(f) || std::isinf(f) || f < INT_MIN || f > INT_MAX)
+	if (std::isnan(f) || std::isinf(f) || f < INT_MIN || static_cast<int>(f) > INT_MAX)
 		std::cout << "impossible" << std::endl;
 	else
 		std::cout << static_cast<int>(f) << std::endl;
@@ -39,15 +39,10 @@ void	printFloat(float f)
 	{
 		std::cout.setf(std::ios::fixed, std::ios::floatfield);
 		if (f == static_cast<float>(static_cast<int>(f)))
-		{
 			std::cout.precision(1);
-			std::cout << f << "f";
-		}
 		else
-		{
 			std::cout.precision(6);
-			std::cout << f << "f";
-		}
+		std::cout << f << "f";
 	}
 	std::cout.flags(old_flags);
 	std::cout.precision(old_precision);
@@ -69,15 +64,10 @@ void	printDouble(double d)
 	{
 		std::cout.setf(std::ios::fixed, std::ios::floatfield);
 		if (d == static_cast<double>(static_cast<int>(d)))
-		{
 			std::cout.precision(1);
-			std::cout << d;
-		}
 		else
-		{
 			std::cout.precision(15);
-			std::cout << d;
-		}
+		std::cout << d;
 	}
 	std::cout.flags(old_flags);
 	std::cout.precision(old_precision);
