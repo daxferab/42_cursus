@@ -1,24 +1,25 @@
-#ifndef TEMPLATES_HPP
-#define TEMPLATES_HPP
+#ifndef WHATEVER_HPP
+#define WHATEVER_HPP
 
 template <typename T>
-void	swap(T& x, T& y)
+void	swap(T &a, T &b)
 {
-	T	temp = x;
+	T	temp = a;
 
-	x = y;
-	y = temp;
+	a = b;
+	b = temp;
 }
 
 template <typename T>
-T	min(T& x, T& y)
+T	min(T a, T b)
 {
-	return (x >= y ? y : x);
+	return (a < b) ? a : b;
 }
 
 template <typename T>
-T	max(T& x, T& y)
+T	max(T a, T b)
 {
-	return (x <= y ? y : x);
+	return (b < a) ? a : b;
 }
+
 #endif
