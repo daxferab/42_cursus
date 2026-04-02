@@ -3,11 +3,14 @@
 
 int	main()
 {
-	int			intArray[] = {1, 2, 3, 4, 5};
-	// double		doubleArray[] = {0.5, 1.5, 2.5, 3.5, 4.5};
-	// std::string	stringArray[] = {"one", "two", "three", "four", "five"};
+	int				intArray[] = {1, 2, 3, 4, 5};
+	double		doubleArray[] = {0.5, 1.5, 2.5, 3.5, 4.5};
+	std::string	stringArray[] = {"one", "two", "three", "four", "five"};
+	size_t const	length = 5;
 
-	iter(&intArray, 5, increment());
+	iter(&intArray, length, increment());
+	iter(&doubleArray, length, increment());
+	iter(&stringArray, length, increment());
 }
 
 
