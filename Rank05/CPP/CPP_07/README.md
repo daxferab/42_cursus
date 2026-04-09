@@ -48,6 +48,10 @@ Passing a function as a template:\
 
 When calling the function, we need to pass the parameter as the name of the other function without the (): `myFunction(passedFunction);`
 
+*int* and *const int* are treated as different types, such as *int* and *double*.\
+When using a function that gets *const T* as a parameter, ALL of the T values must be const (in this example, if the function takes a const int, the array passed to the iter function must be const int too)
+
+
 ### Exercise 2️⃣: Array
 
 #### 💡Concepts learnt
