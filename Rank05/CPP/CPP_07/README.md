@@ -37,6 +37,16 @@ Implement a function template `iter()` that returns nothing and takes 3 paramete
 - Function that will be called on every element of the array (even an instantiated function template). This function may take its argument by const or non-const.
 
 #### 💡Concepts learnt
+Passing an argument address: `T *addr`:\
+The [] aren't needed, since the function doesn't need to know it is an array, only that it is a pointer to a T type variable
+
+Passing a function as a template:\
+`rv (*f)(param)`
+- *rv* -> Return value of said function
+- *f* -> Pointer to the function
+- *param* -> List of parameters the function takes
+
+When calling the function, we need to pass the parameter as the name of the other function without the (): `myFunction(passedFunction);`
 
 ### Exercise 2️⃣: Array
 

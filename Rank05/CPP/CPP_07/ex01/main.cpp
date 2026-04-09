@@ -1,80 +1,52 @@
 #include "include/iter.hpp"
-#include <iostream>
+
+template <typename T>
+void	printArray(T *array, size_t const length);
 
 int	main()
 {
 	int				intArray[] = {1, 2, 3, 4, 5};
-	double		doubleArray[] = {0.5, 1.5, 2.5, 3.5, 4.5};
-	std::string	stringArray[] = {"one", "two", "three", "four", "five"};
+	double			doubleArray[] = {0.5, 1.5, 2.5, 3.5, 4.5};
+	char			stringArray[] = {'a', 'b', 'c', 'd', 'e'};
+	const int		constIntArray[] = {10, 20, 30, 40, 50};
 	size_t const	length = 5;
 
-	iter(&intArray, length, increment());
-	iter(&doubleArray, length, increment());
-	iter(&stringArray, length, increment());
+	std::cout << "Original int array:" << std::endl;
+	printArray(intArray, length);
+	iter(intArray, length, increment);
+	std::cout << "Incremented int array:" << std::endl;
+	printArray(intArray, length);
+
+	std::cout << "------------------------" << std::endl;
+
+	std::cout << "Original double array:" << std::endl;
+	printArray(doubleArray, length);
+	iter(doubleArray, length, increment);
+	std::cout << "Incremented double array:" << std::endl;
+	printArray(doubleArray, length);
+
+	std::cout << "------------------------" << std::endl;
+
+	std::cout << "Original char array:" << std::endl;
+	printArray(stringArray, length);
+	iter(stringArray, length, increment);
+	std::cout << "Incremented char array:" << std::endl;
+	printArray(stringArray, length);
+
+	std::cout << "------------------------" << std::endl;
+
+	std::cout << "Const int array:" << std::endl;
+	iter(constIntArray, length, printConst);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// int main ()
-// {
-// 	int				arrayInts[] = {1, 2, 3, 4};
-// 	char			arrayChar[] = {'a', 'b', 'c', 'd'};
-// 	double			arrayDouble[] = {1.5, 0.6, 3.5, 7.4};
-// 	size_t const	length = 4;
-
-// 	std::cout << "Original Ints Array: { ";
-// 	iter(arrayInts, length, print<int>);
-// 	std::cout << "}" << std::endl;
-
-// 	iter(arrayInts, length, increment<int>);
-
-// 	std::cout << "Incremented Ints Array: { ";
-// 	iter(arrayInts, length, print<int>);
-// 	std::cout << "}" << std::endl;
-
-// 	std::cout << "---------------------------------------" << std::endl;
-
-// 	std::cout << "Original Char Array: { ";
-// 	iter(arrayChar, length, print<char>);
-// 	std::cout << "}" << std::endl;
-
-// 	iter(arrayChar, length, increment<char>);
-
-// 	std::cout << "Incremented Char Array: { ";
-// 	iter(arrayChar, length, print<char>);
-// 	std::cout << "}" << std::endl;
-
-// 	std::cout << "---------------------------------------" << std::endl;
-
-// 	std::cout << "Original Double Array: { ";
-// 	iter(arrayDouble, length, print<double>);
-// 	std::cout << "}" << std::endl;
-
-// 	iter(arrayDouble, length, increment<double>);
-
-// 	std::cout << "Incremented Double Array: { ";
-// 	iter(arrayDouble, length, print<double>);
-// 	std::cout << "}" << std::endl;
-
-// 	std::cout << "---------------------------------------" << std::endl;
-// 	std::cout << "Trying iter with const char: " << std::endl;
-// 	const char arrayConst[] = {'h', 'e', 'l', 'l'};
-// 	iter(arrayConst, length, print<char>);
-
-// 	return 0;
-// }
+template <typename T>
+void	printArray(T *array, size_t const length)
+{
+	std::cout << "Array = {" ;
+	for (size_t i = 0 ; i < length; i++)
+	{
+		std::cout << array[i];
+		if (i < length - 1) {std::cout << ", ";};
+	}
+	std::cout << "}" << std::endl;
+}
