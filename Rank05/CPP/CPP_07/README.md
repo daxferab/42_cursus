@@ -53,5 +53,12 @@ When using a function that gets *const T* as a parameter, ALL of the T values mu
 
 
 ### Exercise 2️⃣: Array
+Create the class template Array, containing elements of type T:
+- Default constructor: empty array.
+- Constructor with parameter *unsigned int* **n**: array of n elements, initialized by default (0).
+- Constructors copy and assignment (modifying array1 after copy mustn't affect array2).
+- Use the operator new[] to allocate memory. Preventive allocation is forbidden. Never acces unallocated memory.
+- Elements must be accessed with []. If index is out of bonds, `std::exception`.
+- Member function `size()`: returns the number of elements in the array, it takes no parameters and mustn't modify the instance.
 
 #### 💡Concepts learnt
