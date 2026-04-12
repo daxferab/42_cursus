@@ -1,21 +1,36 @@
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
 
+# include <cstdio>
+
 template <typename T>
 class Array
 {
-    private:
-        T elements[];
+private:
+	T*		_elements;
+	size_t	_size;
 
-    public:
-        Array();
-        Array(unsigned int n);
-        Array(const Array &other);
-        Array &operator=(const Array &other);
+public:
+	//-------------------------------------- Constructors and copy
+	Array();
+	Array(unsigned int n);
+	Array(const Array &other);
 
-        ~Array();
+	//-------------------------------------- Operators overload
+	Array	&operator=(const Array &other);
+	T		&operator[](int n);
+	
+	//-------------------------------------- Member functions
+	unsigned int	size();
 
-        unsigned int    size();
+	//-------------------------------------- Exceptions
+	class OutOfBounds : public std::exception
+	{
+		virtual const char* what() const throw();
+	};
+
+	//-------------------------------------- Destructor
+	~Array();
 };
 
 #endif
