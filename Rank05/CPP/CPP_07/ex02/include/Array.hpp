@@ -18,10 +18,10 @@ public:
 
 	//-------------------------------------- Operators overload
 	Array	&operator=(const Array &other);
-	T		&operator[](int n);
+	T		&operator[](size_t n);
 	
 	//-------------------------------------- Member functions
-	unsigned int	size();
+	unsigned int	size() const;
 
 	//-------------------------------------- Exceptions
 	class OutOfBounds : public std::exception
@@ -32,5 +32,7 @@ public:
 	//-------------------------------------- Destructor
 	~Array();
 };
+
+# include "../Array.tpp"
 
 #endif

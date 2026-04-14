@@ -1,73 +1,74 @@
-#include "include/Array.hpp"
-
 // --------------------------- Constructors and copy ---------------------------
 
 template <typename T>
-Array::Array()
+Array<T>::Array()
 {
-	_elements = nullptr;
+	_size = 1;
+	_elements = new	T[1]();
 }
 
 template <typename T>
-Array::Array(unsigned int n)
+Array<T>::Array(unsigned int n)
 {
 	_size = n;
-	_elements = new int[n];
-	for (int i = 0; i < n; i++)
+	_elements = new T[n];
+	for (size_t i = 0; i < n; i++)
 		_elements[i] = T();
 }
 
 template <typename T>
-Array::Array(const Array &other)
+Array<T>::Array(const Array<T> &other)
 {
 	_size = other._size;
-	_elements = new int[_size];
+	_elements = new T[_size];
 
 	for (size_t i = 0; i < _size; i++)
-		this._elements[i] = other._elements[i];
+		_elements[i] = other._elements[i];
 }
 
 // ---------------------------- Operators overload -----------------------------
 
 template <typename T>
-Array& Array::operator=(const Array &other)
+Array<T>& Array<T>::operator=(const Array<T> &other)
 {
 	if (this != &other)
 	{
 		delete [] _elements;
 		_size = other._size;
-		_elements = new int[_size];
+		_elements = new T[_size];
 
 		for (size_t i = 0; i < _size; i++)
-			this._elements[i] = other._elements[i];
+			_elements[i] = other._elements[i];
 	}
 	return (*this);
 }
 
 template <typename T>
-T &Array::operator[](int n)
+T &Array<T>::operator[](size_t n)
 {
-	if (n < 0 || n >= _size)
+	if (n >= _size)
 		throw OutOfBounds();
-	return (this->_elements[n])
+	return (_elements[n]);
 }
 
 // -------------------------------- Exceptions ---------------------------------
 
-const char* Array::OutOfBounds::what() const throw()
+template <typename T>
+const char* Array<T>::OutOfBounds::what() const throw()
 {
 	return "Index is out of bounds";
 }
 
 template <typename T>
-unsigned int    Array::size()
+unsigned int    Array<T>::size() const
 {
-	int	i = 0;
-	while (this._elements[i] != NULL)
-		i++;
-	return i;
+	return _size;
 }
 
 // -------------------------------- Destructor ---------------------------------
 
-Array::~Array(){}
+template <typename T>
+Array<T>::~Array()
+{
+	delete [] _elements;
+}
