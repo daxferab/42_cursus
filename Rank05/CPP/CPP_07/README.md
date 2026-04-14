@@ -16,7 +16,7 @@ Each exercise has its own Makefile that will automatically compile every program
 Implement this function templates that take two parameters:
 - `swap()`: swaps the two values given. No return.
 - `min()`: compares them and returns the smallest one. (The second one if equal).
-- `min()`: compares them and returns the greatest one. (The second one if equal).
+- `max()`: compares them and returns the greatest one. (The second one if equal).
 
 They can be called with any type of argument (both of the same type and must support all the comparison operators)
 
@@ -62,3 +62,13 @@ Create the class template Array, containing elements of type T:
 - Member function `size()`: returns the number of elements in the array, it takes no parameters and mustn't modify the instance.
 
 #### 💡Concepts learnt
+A .tpp file includes the definitions of the member functions inside a class template. Instead of including the .hpp file at the beginning of the .tpp file, we include the .tpp file at the end of the .hpp file.
+
+When defining a member function of a class template:\
+`Class<T>::function()`\
+instead of\
+`Class::function()`
+When passing a class template as a parameter:\
+`Class<T> param`\
+instead of\
+`Class param`
