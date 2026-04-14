@@ -6,11 +6,13 @@
 int main(int, char**)
 {
     // ------------- Empty array construction --------------- //
+
     Array<int>  emptyArray;
 
     std::cout << "--------- EMPTY ARRAY ---------" << std::endl;
     for (size_t i = 0; i < emptyArray.size(); i++)
-        std::cout << emptyArray[i] << std::endl << std::endl;
+        std::cout << emptyArray[i] << std::endl;
+    std::cout << "Empty array has " << emptyArray.size() << " element." << std::endl << std::endl;
 
     // ------------- n = 5 array construction --------------- //
 
@@ -19,7 +21,7 @@ int main(int, char**)
     std::cout << "-------- 5-SIZED ARRAY --------" << std::endl;
     for (size_t i = 0; i < fiveArray.size(); i++)
         std::cout << fiveArray[i] << " ";
-    std::cout << std::endl;
+    std::cout << std::endl << "Five sized array has " << fiveArray.size() << " elements." << std::endl << std::endl;
     std::cout << "-> Filling... ->" << std::endl;
     for (size_t i = 0; i < fiveArray.size(); i++)
     {
@@ -42,6 +44,7 @@ int main(int, char**)
     std::cout << std::endl << std::endl;
 
     // --------- Modify copy and assignment arrays ---------- //
+
     std::cout << "Checking independency:" << std::endl;
 
     for (size_t i = 0; i < copyFiveArray.size(); i++)
@@ -62,6 +65,28 @@ int main(int, char**)
     for (size_t i = 0; i < fiveArray.size(); i++)
         std::cout << fiveArray[i] << " ";
     std::cout << std::endl;
+
+    // ------- Accessing out of bounds array element -------- //
+
+    try
+    {
+        std::cout << "Trying to access fiveArray[8]: " << std::endl;
+        std::cout << fiveArray[8] << std::endl;
+    }
+    catch (std::exception &e)
+    {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }
+
+    try
+    {
+        std::cout << "Trying to access fiveArray[-2]: " << std::endl;
+        std::cout << fiveArray[-2] << std::endl;
+    }
+    catch (std::exception &e)
+    {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }
 
     return 0;
 }
