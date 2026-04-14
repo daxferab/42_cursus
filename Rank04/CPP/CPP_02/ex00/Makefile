@@ -1,4 +1,4 @@
-NAME = fixed00
+NAME = fixed00.out
 
 CXX= c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98

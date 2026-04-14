@@ -1,4 +1,4 @@
-NAME = classCast
+NAME = classCast.out
 
 CXX= c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98

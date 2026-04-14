@@ -1,4 +1,4 @@
-NAME = mutated
+NAME = mutated.out
 
 CXX= c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98

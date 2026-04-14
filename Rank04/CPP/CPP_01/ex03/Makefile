@@ -1,4 +1,4 @@
-NAME = weapon
+NAME = weapon.out
 
 CXX= c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98

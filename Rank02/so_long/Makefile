@@ -1,4 +1,4 @@
-NAME = so_long
+NAME = so_long.out
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g3
 INCLUDES = -Iinclude -Ilib/libft -Ilib/mlx/include -Ilib/mlx/include/MLX42

@@ -1,4 +1,4 @@
-NAME = serialization
+NAME = serialization.out
 
 CXX= c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98

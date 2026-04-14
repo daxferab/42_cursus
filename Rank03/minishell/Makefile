@@ -5,7 +5,7 @@ MAKEFLAGS := --no-print-directory
 RM := rm -rf
 MKDIR := mkdir -p
 
-NAME := minishell
+NAME := minishell.out
 
 CC := cc
 CFLAGS := -Wall -Wextra -Werror -g3 -fsanitize=address

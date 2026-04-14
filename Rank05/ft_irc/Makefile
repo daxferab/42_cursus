@@ -6,7 +6,7 @@ MAKEFLAGS := --no-print-directory
 RM := rm -rf
 MKDIR := mkdir -p
 
-NAME := ircserv
+NAME := ircserv.out
 
 CXX= c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98

@@ -1,4 +1,4 @@
-NAME = push_swap
+NAME = push_swap.out
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 INCLUDES = -Iinclude -Ilibft

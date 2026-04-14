@@ -1,4 +1,4 @@
-NAME = pipex
+NAME = pipex.out
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -fsanitize=address -fsanitize=leak -g3
 INCLUDES = -Iinclude -Ilibft

@@ -1,4 +1,4 @@
-NAME = zombiePointers
+NAME = zombiePointers.out
 
 CXX= c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98

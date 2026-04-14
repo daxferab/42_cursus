@@ -1,4 +1,4 @@
-NAME = span
+NAME = span.out
 
 CXX= c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98

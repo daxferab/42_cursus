@@ -1,4 +1,4 @@
-NAME = complain
+NAME = complain.out
 
 CXX= c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98

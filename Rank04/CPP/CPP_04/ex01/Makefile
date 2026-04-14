@@ -1,4 +1,4 @@
-NAME = animalSapiens
+NAME = animalSapiens.out
 
 CXX= c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98

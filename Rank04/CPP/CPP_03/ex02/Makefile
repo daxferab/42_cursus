@@ -1,4 +1,4 @@
-NAME = fragtrap
+NAME = fragtrap.out
 
 CXX= c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98

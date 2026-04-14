@@ -1,4 +1,4 @@
-NAME = account
+NAME = account.out
 
 CXX= c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
