@@ -1,14 +1,23 @@
 #ifndef EASYFIND_HPP
 #define EASYFIND_HPP
-#include <cstddef>
+#include <algorithm>
+#include <exception>
+
+class   noResult : public std::exception
+{
+	virtual const char* what() const throw() {
+		return "Character not found in container";
+	}
+};
 
 template <typename T>
-int    easyfind(T container, int n)
+typename T::iterator easyfind(T &container, int n)
 {
-    for (size_t i = 0; i < container.size(); i++)
-        if (container[i] == n)
-            return (container[i]);
-    return (-1);
+	typename T::iterator pos;
+	pos = std::find(container.begin(), container.end(), n);
+	if (pos == container.end())
+		throw noResult();
+	return (pos);
 }
 
 #endif
