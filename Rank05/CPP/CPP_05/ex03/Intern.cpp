@@ -42,12 +42,12 @@ AForm	*Intern::makeForm(std::string form, std::string target)
 			std::cout << "Intern creates form '" << form << "'" << std::endl;
 			switch(i)
 			{
-                case 0:
-                    return new ShrubberyCreationForm(target);
-                case 1:
-                    return new RobotomyRequestForm(target);
-                case 2:
-                    return new PresidentialPardonForm(target);
+				case 0:
+					return new ShrubberyCreationForm(target);
+				case 1:
+					return new RobotomyRequestForm(target);
+				case 2:
+					return new PresidentialPardonForm(target);
 			}
 		}
 	}

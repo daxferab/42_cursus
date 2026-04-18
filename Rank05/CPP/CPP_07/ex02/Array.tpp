@@ -60,7 +60,7 @@ const char* Array<T>::OutOfBounds::what() const throw()
 }
 
 template <typename T>
-unsigned int    Array<T>::size() const
+unsigned int	Array<T>::size() const
 {
 	return _size;
 }
