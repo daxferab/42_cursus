@@ -34,9 +34,20 @@ The std::find function finds "n" within a container, returns an iterator. Return
 `std::find(cont.begin(), cont.end(), n);`
 
 ### Exercise 1️⃣: Span
+Write a Span class that stores max N (unsigned int) integers:
+- N will be the only parameter passed to the Span constructor.
+- Member function `addNumber()`: Adds a number to the span. (If size = N, throw an exception).
+- Member functions `shortestSpan()` and `longestSpan()`: They will find out the shortest/longest span between all the numbers stored and return it. (If numbers stored < 2, throw an exception).
+- member function that adds multiple numbers in a single call.
 
 #### 💡Concepts learnt
+New functions:
+- `std::sort` : Sorts a container.
+- `std::min_element` / `std::max_element` : Finds the smallest / largest element.
+- `std::distance` : Returns the distance between two iterators.
+- `std::copy` : Copies all elements within a range into another container. `std::back_inserter` inserts an element in the back of a container and moves to the next position.
 
+To insert elements into an uninitialized `std::vector`, we need to use `.push_back()`, if its initialized (vector(n)), we can insert them with an index (`vector[i]`) up to **n**.
 ### Exercise 2️⃣: Mutated abomination
 
 #### 💡Concepts learnt
