@@ -2,6 +2,7 @@ TODO.md
 *.pdf
 subjects
 .vscode
+obj
 
 # Output files
 *.a
