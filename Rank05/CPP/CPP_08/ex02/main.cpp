@@ -1,7 +1,6 @@
 #include "include/MutantStack.hpp"
 #include <cstddef>
 #include <iostream>
-#include <stack>
 #include <vector>
 #include <iomanip>
 

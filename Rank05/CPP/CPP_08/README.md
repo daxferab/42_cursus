@@ -48,6 +48,16 @@ New functions:
 - `std::copy` : Copies all elements within a range into another container. `std::back_inserter` inserts an element in the back of a container and moves to the next position.
 
 To insert elements into an uninitialized `std::vector`, we need to use `.push_back()`, if its initialized (vector(n)), we can insert them with an index (`vector[i]`) up to **n**.
+
 ### Exercise 2️⃣: Mutated abomination
+Write a MutantStack class that inherits from std::stack.\
+Implement an additional feature: **iterators**.
 
 #### 💡Concepts learnt
+
+`std::stack` acts as an "envelope" for a container. It forces it to behave as a LIFO data structure.\
+`typename std::stack<T, std::deque<T> >::container_type::const_iterator name` is an iterator of *container_type* which, in this case, is a deque.
+
+`this->c.begin()` and `this->c.end()` return the top and bottom elements of a container.\
+
+
