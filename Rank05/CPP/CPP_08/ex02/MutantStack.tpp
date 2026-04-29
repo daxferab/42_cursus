@@ -1,7 +1,5 @@
 //--------------------------- Constructors and copy ----------------------------
 
-#include <new>
-#include <stack>
 template <typename T>
 MutantStack<T>::MutantStack(){}
 

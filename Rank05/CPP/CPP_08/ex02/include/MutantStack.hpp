@@ -4,7 +4,7 @@
 #include <stack>
 
 template <typename T>
-class MutantStack : public std::stack<T, std::deque<T> >
+class MutantStack : public std::stack<T>
 {
 public:
 	//-------------------------------------- Constructors and copy
@@ -15,7 +15,7 @@ public:
 	MutantStack	&operator=(const MutantStack &other);
 	
 	//-------------------------------------- Member functions
-    typedef typename std::stack<T, std::deque<T> >::container_type::const_iterator iterator;
+    typedef typename std::stack<T>::container_type::const_iterator iterator;
 	typename MutantStack<T>::iterator	begin();
 	typename MutantStack<T>::iterator	end();
 
