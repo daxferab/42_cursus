@@ -56,8 +56,12 @@ Implement an additional feature: **iterators**.
 #### 💡Concepts learnt
 
 `std::stack` acts as an "envelope" for a container. It forces it to behave as a LIFO data structure.\
-`typename std::stack<T, std::deque<T> >::container_type::const_iterator name` is an iterator of *container_type* which, in this case, is a deque.
+std::stack is based on an underlying container, std::deque, which has iterators.\
+`typename std::stack<T, std::deque<T> >::container_type::const_iterator name` is an iterator of *container_type*.
 
-`this->c.begin()` and `this->c.end()` return the top and bottom elements of a container.\
+`this->c.begin()` and `this->c.end()`:\
+std::stack<T> has a protected member variable "c" that stores the elements inside the stack.\
+"c" has member functions like begin() and end().\
+(c is of type std::deque<T> by default, but it could be std::vector<T> or std::list<T>)
 
 
