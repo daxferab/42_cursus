@@ -3,7 +3,6 @@
 #include <fstream>
 #include <map>
 #include <string>
-#include <iostream>
 
 int main(int ac, char **av)
 {
