@@ -13,9 +13,9 @@ static bool	checkValue(float value);
 
 bool	error(int i)
 {
-	std::cout << "Error: " << g_error[i];
+	std::cerr << "Error: " << g_error[i];
 	if (i != ERR_INPUT)
-		std::cout << std::endl;
+		std::cerr << std::endl;
 	return false;
 }
 
@@ -68,7 +68,7 @@ static bool	checkLineFormat(std::string line, s_data *dataPair)
 	if (spaces != 2)
 	{
 		error(ERR_INPUT);
-		std::cout << line << std::endl;
+		std::cerr << line << std::endl;
 		return (false);
 	}
 
