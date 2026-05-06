@@ -7,6 +7,10 @@
 #include <utility>
 #include <algorithm>
 
+static bool	checkLineFormat(std::string line, s_data *dataPair);
+static bool	checkDate(std::string date);
+static bool	checkValue(float value);
+
 bool	error(int i)
 {
 	std::cout << "Error: " << g_error[i];
@@ -36,7 +40,29 @@ bool	checkLine(std::string line, s_data* dataPair)
 	return true;
 }
 
-bool	checkLineFormat(std::string line, s_data *dataPair)
+void	printMatch(std::map<std::string, float> database, s_data dataPair)
+{
+	float									result;
+	std::map<std::string, float>::iterator	it = database.lower_bound(dataPair.date);
+
+	if (it != database.end() && it->first == dataPair.date) // Match
+	{
+		result = it->second * dataPair.value;
+		std::cout << dataPair.date << " => " << dataPair.value << " = " << result << std::endl;
+	}
+	else if (it != database.begin()) // Not match (use lower bound)
+	{
+		--it;
+		result = it->second * dataPair.value;
+		std::cout << dataPair.date << " => " << dataPair.value << " = " << result << std::endl;
+	}
+	else // Date lower than stored ones (it cant get the lower bound)
+		error(ERR_DATE_LOW);
+}
+
+// ----------------------------- STATIC FUNCTIONS ------------------------------
+
+static bool	checkLineFormat(std::string line, s_data *dataPair)
 {
 	size_t spaces = std::count(line.begin(), line.end(), ' ');
 	if (spaces != 2)
@@ -59,7 +85,7 @@ bool	checkLineFormat(std::string line, s_data *dataPair)
 	return (true);
 }
 
-bool	checkDate(std::string date)
+static bool	checkDate(std::string date)
 {
 	if (date.length() != 10 || date[4] != '-' || date[7] != '-')
 		return (error(ERR_DATE_FORMAT));
@@ -83,34 +109,11 @@ bool	checkDate(std::string date)
 	return true;
 }
 
-bool	checkValue(float value)
+static bool	checkValue(float value)
 {
 	if (value < 0)
 		return (error(ERR_VALUE_NEGATIVE));
 	if (value > 1000)
 		return (error(ERR_VALUE_TOO_LARGE));
 	return true;
-}
-
-void	printMatch(std::map<std::string, float> database, s_data dataPair)
-{
-	float									result;
-	std::map<std::string, float>::iterator	it = database.lower_bound(dataPair.date);
-
-	if (it != database.end() && it->first == dataPair.date) // Match
-	{
-		result = it->second * dataPair.value;
-		std::cout << dataPair.date << " => " << dataPair.value << " = " << result << std::endl;
-	}
-	else if (it != database.begin()) // Not match (use lower bound)
-	{
-		--it;
-		result = it->second * dataPair.value;
-		std::cout << dataPair.date << " => " << dataPair.value << " = " << result << std::endl;
-	}
-	else // Date lower than stored ones (it cant get the lower bound)
-	{
-		error(ERR_DATE_LOW);
-		return ;
-	}
 }

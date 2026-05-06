@@ -40,11 +40,9 @@ typedef struct s_data
 
 bool	error(int i);
 
-void	insertPair(std::map<std::string, float>* database, std::string line);
-void	printMatch(std::map<std::string, float> database, s_data dataPair);
-bool	checkLine(std::string line, s_data* dataPair);
-bool	checkLineFormat(std::string line, s_data *dataPair);
-bool	checkDate(std::string date);
-bool	checkValue(float value);
+void		insertPair(std::map<std::string, float>* database, std::string line);
+bool		checkLine(std::string line, s_data* dataPair);
+
+void		printMatch(std::map<std::string, float> database, s_data dataPair);
 
 #endif
