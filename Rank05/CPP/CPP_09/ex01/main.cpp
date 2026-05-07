@@ -1,0 +1,7 @@
+#include "include/RPN.hpp"
+
+int main(int ac, char **av)
+{
+	if (ac != 2)
+		return (error(ERR_ARG));
+}
