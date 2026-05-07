@@ -13,11 +13,7 @@ static bool	checkValue(float value);
 
 bool	error(int i, std::string line)
 {
-	std::cerr << "Error: " << g_error[i];
-	if (!line.empty())
-		std::cerr << line;
-	(void)line;
-	std::cerr << std::endl;
+	std::cerr << "Error: " << g_error[i] << line << std::endl;
 	return false;
 }
 
