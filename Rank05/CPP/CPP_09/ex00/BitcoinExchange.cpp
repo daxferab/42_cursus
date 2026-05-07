@@ -11,11 +11,13 @@ static bool	checkLineFormat(std::string line, s_data *dataPair);
 static bool	checkDate(std::string date);
 static bool	checkValue(float value);
 
-bool	error(int i)
+bool	error(int i, std::string line)
 {
 	std::cerr << "Error: " << g_error[i];
-	if (i != ERR_INPUT)
-		std::cerr << std::endl;
+	if (!line.empty())
+		std::cerr << line;
+	(void)line;
+	std::cerr << std::endl;
 	return false;
 }
 
@@ -57,7 +59,7 @@ void	printMatch(std::map<std::string, float> database, s_data dataPair)
 		std::cout << dataPair.date << " => " << dataPair.value << " = " << result << std::endl;
 	}
 	else // Date lower than stored ones (it cant get the lower bound)
-		error(ERR_DATE_LOW);
+		error(ERR_DATE_LOW, "");
 }
 
 // ----------------------------- STATIC FUNCTIONS ------------------------------
@@ -66,11 +68,7 @@ static bool	checkLineFormat(std::string line, s_data *dataPair)
 {
 	size_t spaces = std::count(line.begin(), line.end(), ' ');
 	if (spaces != 2)
-	{
-		error(ERR_INPUT);
-		std::cerr << line << std::endl;
-		return (false);
-	}
+		return (error(ERR_INPUT, line));
 
 	std::stringstream	ss(line);
 	std::string			pipe;
@@ -79,41 +77,41 @@ static bool	checkLineFormat(std::string line, s_data *dataPair)
 	ss >> pipe;
 	ss >> dataPair->value;
 	if (pipe != "|")
-		return (error(ERR_INPUT));
+		return (error(ERR_INPUT, line));
 	if (ss.fail())
-		return (error(ERR_VALUE_FORMAT));
+		return (error(ERR_VALUE_FORMAT, ""));
 	return (true);
 }
 
 static bool	checkDate(std::string date)
 {
 	if (date.length() != 10 || date[4] != '-' || date[7] != '-')
-		return (error(ERR_DATE_FORMAT));
+		return (error(ERR_DATE_FORMAT, ""));
 	for (int i = 0; i < 10; ++i)
 		if (i != 4 && i != 7 && !std::isdigit(date[i])) 
-			return error(ERR_DATE_FORMAT);
+			return error(ERR_DATE_FORMAT, "");
 
 	int year = std::atoi(date.substr(0, 4).c_str());
 	int month = std::atoi(date.substr(5, 2).c_str());
 	int day = std::atoi(date.substr(8, 2).c_str());
 
 	if (year < 1 || month < 1 || month > 12)
-		return (error(ERR_DATE_BOUNDS));
+		return (error(ERR_DATE_BOUNDS, ""));
 	if (day < 1 || day > 31)
-		return (error(ERR_DATE_BOUNDS));
+		return (error(ERR_DATE_BOUNDS, ""));
 
 	int daysInMonth[] = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 	if (day > daysInMonth[month])
-		return (error(ERR_DATE_BOUNDS));
+		return (error(ERR_DATE_BOUNDS, ""));
 	return true;
 }
 
 static bool	checkValue(float value)
 {
 	if (value < 0)
-		return (error(ERR_VALUE_NEGATIVE));
+		return (error(ERR_VALUE_NEGATIVE, ""));
 	if (value > 1000)
-		return (error(ERR_VALUE_TOO_LARGE));
+		return (error(ERR_VALUE_TOO_LARGE, ""));
 	return true;
 }

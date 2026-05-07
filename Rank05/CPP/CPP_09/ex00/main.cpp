@@ -7,7 +7,7 @@
 int main(int ac, char **av)
 {
 	if (ac != 2)
-		return (error(ERR_ARG));
+		return (error(ERR_ARG, ""));
 
 	// Open input file and db file
 	std::ifstream					dbFile("data.csv");
@@ -16,7 +16,7 @@ int main(int ac, char **av)
 	{
 		dbFile.close();
 		inputFile.close();
-		return (error(ERR_OPEN_FILE));
+		return (error(ERR_OPEN_FILE, ""));
 	}
 
 	// Save database in map
