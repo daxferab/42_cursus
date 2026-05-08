@@ -34,7 +34,7 @@ Standard usage:
 	`./RPN "8 9 * 9 - 9 - 9 - 4 - 1 +"` -> `42`
 
 #### 💡Concepts learnt
-
+std::list -> Double linked list. Frequent deletion and insertion on any position (With iterator).
 
 ### Exercise 2️⃣: PmergeMe
 

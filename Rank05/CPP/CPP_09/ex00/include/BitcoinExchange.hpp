@@ -4,6 +4,8 @@
 #include <map>
 #include <string>
 
+#define RED "\033[31m"
+
 const	std::string g_error[] = 
 {
 	"usage <./btc input>.",

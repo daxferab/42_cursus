@@ -13,7 +13,7 @@ static bool	isSign(char	token);
 
 bool	error(int i, std::string token)
 {
-	std::cerr << "Error: " << g_error[i] << token << std::endl;
+	std::cerr << RED << "Error: " << g_error[i] << token << std::endl;
 	return false;
 }
 
