@@ -1,5 +1,7 @@
 #include "include/RPN.hpp"
+
 #include <list>
+#include <iostream>
 
 int main(int ac, char **av)
 {
@@ -7,6 +9,9 @@ int main(int ac, char **av)
 		return (error(ERR_ARG, ""));
 
 	std::list<char>	operation;
-	if (!parseOperation(&operation, av[1]))
-		return (1);
+	if (!parseInput(&operation, av[1]))
+		return 1;
+
+	std::cout << solveOperation(&operation) << std::endl;
+	return 0;
 }
