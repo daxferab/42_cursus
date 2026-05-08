@@ -8,7 +8,7 @@ int main(int ac, char **av)
 	if (ac != 2)
 		return (error(ERR_ARG, ""));
 
-	std::list<char>	operation;
+	std::list<std::string>	operation;
 	if (!parseInput(&operation, av[1]))
 		return 1;
 

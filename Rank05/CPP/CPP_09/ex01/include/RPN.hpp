@@ -24,9 +24,9 @@ typedef enum e_error
 	ERR_SYNT
 } t_error;
 
-bool	error(int i, std::string token);
+bool		error(int i, std::string token);
 
-bool	parseInput(std::list<char> *operation, std::string line);
-long	solveOperation(std::list<char> *operation);
+bool		parseInput(std::list<std::string> *operation, std::string line);
+std::string	solveOperation(std::list<std::string> *operation);
 
 #endif
