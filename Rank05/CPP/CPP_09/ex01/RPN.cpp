@@ -3,13 +3,15 @@
 #include <cctype>
 #include <cstddef>
 #include <iostream>
+#include <iterator>
 #include <list>
 #include <sstream>
 #include <string>
 
 static bool	isValidToken(char token);
-static bool	checkPolishNotation(std::list<char>	*operation);
 static bool	isSign(char	token);
+static bool	checkPolishNotation(std::list<char>	*operation);
+static long solveSign(long a, long b, char s);
 
 bool	error(int i, std::string token)
 {
@@ -40,9 +42,29 @@ bool	parseInput(std::list<char>	*operation, std::string line)
 
 long	solveOperation(std::list<char>	*operation)
 {
-	(void)operation;
 	long	result = 0;
-	return (result);
+
+	std::list<char>::iterator	it;
+	std::list<char>::iterator	ita;
+	std::list<char>::iterator	itb;
+
+	while (operation->size() > 1)
+	{
+		it = operation->begin();
+		while (isdigit(*it))
+			it++;
+
+		ita = it;
+		itb = it;
+		std::advance(ita, -2);
+		std::advance(itb, -1);
+		result = solveSign(*ita - '0', *itb - '0', *it);
+		operation->insert(it, result + '0');
+		operation->erase(it);
+		operation->erase(ita);
+		operation->erase(itb);
+	}
+	return (*operation->begin() - '0');
 }
 
 // ----------------------------- STATIC FUNCTIONS ------------------------------
@@ -50,6 +72,11 @@ long	solveOperation(std::list<char>	*operation)
 static bool isValidToken(char token)
 {
 	return (isdigit(token) || isSign(token));
+}
+
+static	bool isSign(char	token)
+{
+	return (token == ADD || token == SUBSTRACT || token == MULTIPLY || token == DIVIDE);
 }
 
 static bool	checkPolishNotation(std::list<char>	*operation)
@@ -85,7 +112,17 @@ static bool	checkPolishNotation(std::list<char>	*operation)
 	return true;
 }
 
-static	bool isSign(char	token)
+static long solveSign(long a, long b, char s)
 {
-	return (token == '+' || token == '-' || token == '*' || token == '/');
+	switch (s) {
+		case ADD:
+			return a + b;
+		case SUBSTRACT:
+			return a - b;
+		case MULTIPLY:
+			return a * b;
+		case DIVIDE:
+			return a / b;
+	}
+	return 0;
 }

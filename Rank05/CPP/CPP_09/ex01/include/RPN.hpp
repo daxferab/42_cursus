@@ -5,6 +5,10 @@
 #include <string>
 
 #define RED "\033[31m"
+#define ADD '+'
+#define SUBSTRACT '-'
+#define MULTIPLY '*'
+#define DIVIDE '/'
 
 const	std::string g_error[] = 
 {
@@ -22,7 +26,7 @@ typedef enum e_error
 
 bool	error(int i, std::string token);
 
-bool	parseInput(std::list<char>	*operation, std::string line);
-long	solveOperation(std::list<char>	*operation);
+bool	parseInput(std::list<char> *operation, std::string line);
+long	solveOperation(std::list<char> *operation);
 
 #endif
