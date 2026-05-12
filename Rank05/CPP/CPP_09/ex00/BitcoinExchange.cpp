@@ -7,7 +7,7 @@
 #include <utility>
 #include <algorithm>
 
-static bool	checkLineFormat(std::string line, s_data *dataPair);
+static bool	checkLineFormat(std::string line, s_data &dataPair);
 static bool	checkDate(std::string date);
 static bool	checkValue(float value);
 
@@ -17,7 +17,7 @@ bool	error(int i, std::string line)
 	return false;
 }
 
-void	insertPair(std::map<std::string, float>* database, std::string line)
+void	insertPair(std::map<std::string, float>& database, std::string line)
 {
 	std::stringstream				ss(line);
 	std::pair<std::string, float>	newPair;
@@ -26,14 +26,14 @@ void	insertPair(std::map<std::string, float>* database, std::string line)
 	std::getline(ss, newPair.first, ',');
 	ss >> price;
 	newPair.second = price;
-	database->insert(newPair);
+	database.insert(newPair);
 }
 
-bool	checkLine(std::string line, s_data* dataPair)
+bool	checkLine(std::string line, s_data& dataPair)
 {
 	std::string			pipe;
 
-	if (!checkLineFormat(line, dataPair) || !checkDate(dataPair->date) || !checkValue(dataPair->value))
+	if (!checkLineFormat(line, dataPair) || !checkDate(dataPair.date) || !checkValue(dataPair.value))
 		return false;
 	return true;
 }
@@ -60,7 +60,7 @@ void	printMatch(std::map<std::string, float> database, s_data dataPair)
 
 // ----------------------------- STATIC FUNCTIONS ------------------------------
 
-static bool	checkLineFormat(std::string line, s_data *dataPair)
+static bool	checkLineFormat(std::string line, s_data &dataPair)
 {
 	size_t spaces = std::count(line.begin(), line.end(), ' ');
 	if (spaces != 2)
@@ -69,9 +69,9 @@ static bool	checkLineFormat(std::string line, s_data *dataPair)
 	std::stringstream	ss(line);
 	std::string			pipe;
 
-	ss >> dataPair->date;
+	ss >> dataPair.date;
 	ss >> pipe;
-	ss >> dataPair->value;
+	ss >> dataPair.value;
 	if (pipe != "|")
 		return (error(ERR_INPUT, line));
 	if (ss.fail())

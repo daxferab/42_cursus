@@ -42,8 +42,8 @@ typedef struct s_data
 
 bool		error(int i, std::string line);
 
-void		insertPair(std::map<std::string, float>* database, std::string line);
-bool		checkLine(std::string line, s_data* dataPair);
+void		insertPair(std::map<std::string, float>& database, std::string line);
+bool		checkLine(std::string line, s_data& dataPair);
 
 void		printMatch(std::map<std::string, float> database, s_data dataPair);
 

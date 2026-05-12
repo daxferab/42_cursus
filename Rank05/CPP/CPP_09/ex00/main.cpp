@@ -24,7 +24,7 @@ int main(int ac, char **av)
 	std::string 					line;
 	while (std::getline(dbFile, line))
 	{
-		insertPair(&database, line);
+		insertPair(database, line);
 	}
 
 	//Read each line (skipping the first one)
@@ -32,7 +32,7 @@ int main(int ac, char **av)
 	std::getline(inputFile, line);
 	while (std::getline(inputFile, line))
 	{
-		if (!line.empty() && checkLine(line, &dataPair))
+		if (!line.empty() && checkLine(line, dataPair))
 			printMatch(database, dataPair);
 	}
 
