@@ -11,7 +11,7 @@
 
 static bool	isValidToken(std::string token);
 static bool	isSign(char	token);
-static bool	checkPolishNotation(std::list<std::string>	*operation);
+static bool	checkPolishNotation(std::list<std::string>	&operation);
 static long solveSign(std::list<std::string>::iterator a, std::list<std::string>::iterator b, char s);
 
 bool	error(int i, std::string token)
@@ -20,7 +20,7 @@ bool	error(int i, std::string token)
 	return false;
 }
 
-bool	parseInput(std::list<std::string> *operation, std::string line)
+bool	parseInput(std::list<std::string> &operation, std::string line)
 {
 	std::stringstream	ss(line);
 	std::string			token;
@@ -30,14 +30,14 @@ bool	parseInput(std::list<std::string> *operation, std::string line)
 	{
 		if (!isValidToken(token))
 			return (error(ERR_FORB_TOK, token));
-		operation->push_back(token);
+		operation.push_back(token);
 	}
 
 	// Check if it has mathematical sense
 	return (checkPolishNotation(operation));
 }
 
-std::string solveOperation(std::list<std::string>	*operation)
+std::string solveOperation(std::list<std::string>	&operation)
 {
 	long	result = 0;
 
@@ -45,9 +45,9 @@ std::string solveOperation(std::list<std::string>	*operation)
 	std::list<std::string>::iterator	ita;
 	std::list<std::string>::iterator	itb;
 
-	while (operation->size() > 1)
+	while (operation.size() > 1)
 	{
-		it = operation->begin();
+		it = operation.begin();
 		while (isdigit((*it)[0]))
 			it++;
 
@@ -58,12 +58,12 @@ std::string solveOperation(std::list<std::string>	*operation)
 		result = solveSign(ita, itb, (*it)[0]);
 		std::stringstream ss;
         ss << result;
-		operation->insert(it, ss.str());
-		operation->erase(it);
-		operation->erase(ita);
-		operation->erase(itb);
+		operation.insert(it, ss.str());
+		operation.erase(it);
+		operation.erase(ita);
+		operation.erase(itb);
 	}
-	return (*operation->begin());
+	return (*operation.begin());
 }
 
 // ----------------------------- STATIC FUNCTIONS ------------------------------
@@ -78,12 +78,12 @@ static	bool isSign(char	token)
 	return (token == ADD || token == SUBSTRACT || token == MULTIPLY || token == DIVIDE);
 }
 
-static bool	checkPolishNotation(std::list<std::string>	*operation)
+static bool	checkPolishNotation(std::list<std::string>	&operation)
 {
-	if (operation->empty())
+	if (operation.empty())
 		return (false);
 
-	std::list<std::string>::iterator	it = operation->begin();
+	std::list<std::string>::iterator	it = operation.begin();
 	if (!isdigit((*it)[0]))
 		return (error(ERR_SYNT, ""));
 	
@@ -91,14 +91,14 @@ static bool	checkPolishNotation(std::list<std::string>	*operation)
 	size_t	digits = 0;
 	size_t	signs = 0;
 		
-	while (it != operation->end())
+	while (it != operation.end())
 	{
-		while (it != operation->end() && isdigit((*it)[0]))
+		while (it != operation.end() && isdigit((*it)[0]))
 		{
 			digits++;
 			it++;
 		}
-		while (it != operation->end() && isSign((*it)[0]))
+		while (it != operation.end() && isSign((*it)[0]))
 		{
 			signs++;
 			it++;

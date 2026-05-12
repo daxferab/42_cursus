@@ -26,7 +26,7 @@ typedef enum e_error
 
 bool		error(int i, std::string token);
 
-bool		parseInput(std::list<std::string> *operation, std::string line);
-std::string	solveOperation(std::list<std::string> *operation);
+bool		parseInput(std::list<std::string> &operation, std::string line);
+std::string	solveOperation(std::list<std::string> &operation);
 
 #endif
