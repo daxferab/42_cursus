@@ -37,6 +37,19 @@ Standard usage:
 std::list -> Double linked list. Frequent deletion and insertion on any position (With iterator).
 
 ### Exercise 2️⃣: PmergeMe
+Create a program that takes a positive integer sequence as an argument.\
+It must use the merge-insert algorithm (Ford-Johnson) to sort the sequence.\
+Use at least two different containers.\
+Advise: implement an algorithm for each container (no generic function).\
+Handle possible errors and display them (wrong input, duplicate numbers).
+
+Guidelines for info display (4 lines):
+- Explicit text + unsorted sequence
+- Explicit text + sorted sequence
+- Explicit message with the time taken by the algorithm (sorting + data management), specifying the **first** container used
+- Explicit message with the time taken by the algorithm (sorting + data management), specifying the **second** container used
+
+(The time precision must allow to clearly see the difference between the two containers)
 
 #### 💡Concepts learnt
 
