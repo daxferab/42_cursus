@@ -10,18 +10,12 @@
 #define MULTIPLY '*'
 #define DIVIDE '/'
 
-const	std::string g_error[] = 
-{
-	"usage <./RPN input>",
-	"forbidden token -> ",
-	"syntax error"
-};
-
 typedef enum e_error
 {
 	ERR_ARG,
 	ERR_FORB_TOK,
-	ERR_SYNT
+	ERR_SYNT,
+	ERR_ZERO_DIV
 } t_error;
 
 bool		error(int i, std::string token);

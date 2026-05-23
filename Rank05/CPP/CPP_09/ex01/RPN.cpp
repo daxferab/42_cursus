@@ -9,6 +9,14 @@
 #include <string>
 #include <cstdlib>
 
+static const	std::string g_error[] = 
+{
+	"usage <./RPN input>",
+	"forbidden token -> ",
+	"syntax error",
+	"cannot divide by zero"
+};
+
 static bool	isValidToken(std::string token);
 static bool	isSign(char	token);
 static bool	checkPolishNotation(std::list<std::string>	&operation);
@@ -123,6 +131,8 @@ static long solveSign(std::list<std::string>::iterator a, std::list<std::string>
 		case MULTIPLY:
 			return al * bl;
 		case DIVIDE:
+			if (bl == 0)
+				error(ERR_ZERO_DIV, "");
 			return al / bl;
 	}
 	return 0;
