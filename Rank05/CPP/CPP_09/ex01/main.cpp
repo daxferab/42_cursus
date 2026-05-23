@@ -12,6 +12,11 @@ int main(int ac, char **av)
 	if (!parseInput(operation, av[1]))
 		return 1;
 
-	std::cout << solveOperation(operation) << std::endl;
+	try
+	{
+		std::cout << solveOperation(operation) << std::endl;
+	} catch (std::exception &e) {
+		std::cerr << RED << e.what() << std::endl;
+	}
 	return 0;
 }

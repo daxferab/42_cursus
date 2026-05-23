@@ -2,10 +2,12 @@
 
 #include <cctype>
 #include <cstddef>
+#include <exception>
 #include <iostream>
 #include <iterator>
 #include <list>
 #include <sstream>
+#include <stdexcept>
 #include <string>
 #include <cstdlib>
 
@@ -63,13 +65,18 @@ std::string solveOperation(std::list<std::string>	&operation)
 		itb = it;
 		std::advance(ita, -2);
 		std::advance(itb, -1);
-		result = solveSign(ita, itb, (*it)[0]);
-		std::stringstream ss;
-        ss << result;
-		operation.insert(it, ss.str());
-		operation.erase(it);
-		operation.erase(ita);
-		operation.erase(itb);
+		try
+		{
+			result = solveSign(ita, itb, (*it)[0]);
+			std::stringstream ss;
+			ss << result;
+			operation.insert(it, ss.str());
+			operation.erase(it);
+			operation.erase(ita);
+			operation.erase(itb);
+		} catch (std::exception &e) {
+			throw;
+		}
 	}
 	return (*operation.begin());
 }
@@ -132,7 +139,7 @@ static long solveSign(std::list<std::string>::iterator a, std::list<std::string>
 			return al * bl;
 		case DIVIDE:
 			if (bl == 0)
-				error(ERR_ZERO_DIV, "");
+				throw std::out_of_range("Cannot divide by zero");
 			return al / bl;
 	}
 	return 0;
