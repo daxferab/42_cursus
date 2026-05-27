@@ -34,7 +34,7 @@ Standard usage:
 	`./RPN "8 9 * 9 - 9 - 9 - 4 - 1 +"` -> `42`
 
 #### 💡Concepts learnt
-std::list -> Double linked list. Frequent deletion and insertion on any position (With iterator).
+std::stack -> FIFO (First in first out) to follow the RPN logic
 
 ### Exercise 2️⃣: PmergeMe
 Create a program that takes a positive integer sequence as an argument.\
@@ -52,4 +52,3 @@ Guidelines for info display (4 lines):
 (The time precision must allow to clearly see the difference between the two containers)
 
 #### 💡Concepts learnt
-

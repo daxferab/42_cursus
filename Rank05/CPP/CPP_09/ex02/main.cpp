@@ -1,13 +1,26 @@
 #include "include/PmergeMe.hpp"
-#include <algorithm>
+#include <codecvt>
+#include <iostream>
+#include <vector>
+#include <map>
+
+// int main(int ac, char **av)
+// {
+// 	if (ac < 2)
+// 		return error(ERR_ARG);
+// 	try {
+// 	{
+// 		vectorContainer(av);
+// 		// otroContainer(av);
+// 	}
+// 	} catch (std::exception &e) {
+// 		std::cerr << RED << e.what() << std::endl;
+// 	}
+// 	return 0;
+// }
+
 
 int main(int ac, char **av)
 {
-	if (ac < 2)
-		return error(ERR_ARG);
-	if (!vectorContainer(av))
-		return 1;
-	// if (!secondContainer(av))
-	// 	return 1;
 	return 0;
 }
