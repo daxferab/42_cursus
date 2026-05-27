@@ -1,20 +1,19 @@
 #include "include/RPN.hpp"
 
-#include <list>
 #include <iostream>
 
 int main(int ac, char **av)
 {
 	if (ac != 2)
-		return (error(ERR_ARG, ""));
+	{
+		std::cerr << "usage <./RPN input>" << std::endl;
+		return (1);
+	}
 
-	std::list<std::string>	operation;
-	if (!parseInput(operation, av[1]))
-		return 1;
-
+	RPN	solver;
 	try
 	{
-		std::cout << solveOperation(operation) << std::endl;
+		std::cout << solver.solveOperation(av[1]) << std::endl;
 	} catch (std::exception &e) {
 		std::cerr << RED << e.what() << std::endl;
 	}

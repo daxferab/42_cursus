@@ -1,146 +1,97 @@
 #include "include/RPN.hpp"
-
-#include <cctype>
-#include <cstddef>
 #include <exception>
-#include <iostream>
-#include <iterator>
-#include <list>
 #include <sstream>
-#include <stdexcept>
-#include <string>
-#include <cstdlib>
+#include <iostream>
 
-static const	std::string g_error[] = 
-{
-	"usage <./RPN input>",
-	"forbidden token -> ",
-	"syntax error",
-	"cannot divide by zero"
-};
+// ---------------------------------------------------------------- Constructors
 
-static bool	isValidToken(std::string token);
-static bool	isSign(char	token);
-static bool	checkPolishNotation(std::list<std::string>	&operation);
-static long solveSign(std::list<std::string>::iterator a, std::list<std::string>::iterator b, char s);
-
-bool	error(int i, std::string token)
-{
-	std::cerr << RED << "Error: " << g_error[i] << token << std::endl;
-	return false;
+RPN::RPN() {}
+RPN::RPN(const RPN& other) : _result(other._result) {}
+RPN &RPN::operator=(const RPN &other) {
+	if (this != &other)
+		_result = other._result;
+	return *this;
 }
 
-bool	parseInput(std::list<std::string> &operation, std::string line)
-{
-	std::stringstream	ss(line);
-	std::string			token;
+// ------------------------------------------------------------ Member functions
 
-	// Check if tokens are {0-9, +, -, *, /}
+int	RPN::solveOperation(char	*operation)
+{
+	std::stringstream	ss(operation);
+	std::string			token;
 	while (ss >> token)
 	{
-		if (!isValidToken(token))
-			return (error(ERR_FORB_TOK, token));
-		operation.push_back(token);
-	}
-
-	// Check if it has mathematical sense
-	return (checkPolishNotation(operation));
-}
-
-std::string solveOperation(std::list<std::string>	&operation)
-{
-	long	result = 0;
-
-	std::list<std::string>::iterator	it;
-	std::list<std::string>::iterator	ita;
-	std::list<std::string>::iterator	itb;
-
-	while (operation.size() > 1)
-	{
-		it = operation.begin();
-		while (isdigit((*it)[0]))
-			it++;
-
-		ita = it;
-		itb = it;
-		std::advance(ita, -2);
-		std::advance(itb, -1);
-		try
+		if (token.size() == 1)
 		{
-			result = solveSign(ita, itb, (*it)[0]);
-			std::stringstream ss;
-			ss << result;
-			operation.insert(it, ss.str());
-			operation.erase(it);
-			operation.erase(ita);
-			operation.erase(itb);
-		} catch (std::exception &e) {
-			throw;
+			if (isOperator(token[0]))
+			{
+				try {
+					evaluate(token[0]);
+				} catch (std::exception &e) {
+					throw;
+				}
+			}
+			else if (isdigit(token[0]))
+				_result.push(token[0] - '0');
+			else
+				throw invalidToken();
+		} else {
+			throw invalidToken();
 		}
 	}
-	return (*operation.begin());
+	if (_result.size() == 1)
+		return _result.top();
+	throw invalidSyntax();
 }
 
-// ----------------------------- STATIC FUNCTIONS ------------------------------
-
-static bool isValidToken(std::string token)
+void RPN::evaluate(char sign)
 {
-	return (token.length() == 1 || isdigit(token[0]) || isSign(token[0]));
+	if (_result.size() < 2)
+		throw invalidSyntax();
+
+	long b = _result.top();
+	_result.pop();
+	long a = _result.top();
+	_result.pop();
+
+	switch (sign) {
+		case ADD:
+			_result.push(a + b);
+			break;
+		case SUBSTRACT:
+			_result.push(a - b);
+			break;
+		case MULTIPLY:
+			_result.push(a * b);
+			break;
+		case DIVIDE:
+			if (b == 0)
+				throw std::out_of_range("Cannot divide by zero");
+			_result.push(a / b);
+			break;
+	}
 }
 
-static	bool isSign(char	token)
+// ---------------------------------------------------------------------- Helper
+
+bool isOperator(char token)
 {
 	return (token == ADD || token == SUBSTRACT || token == MULTIPLY || token == DIVIDE);
 }
 
-static bool	checkPolishNotation(std::list<std::string>	&operation)
-{
-	if (operation.empty())
-		return (false);
+// ------------------------------------------------------------------ Exceptions
 
-	std::list<std::string>::iterator	it = operation.begin();
-	if (!isdigit((*it)[0]))
-		return (error(ERR_SYNT, ""));
-	
-	it++;
-	size_t	digits = 0;
-	size_t	signs = 0;
-		
-	while (it != operation.end())
-	{
-		while (it != operation.end() && isdigit((*it)[0]))
-		{
-			digits++;
-			it++;
-		}
-		while (it != operation.end() && isSign((*it)[0]))
-		{
-			signs++;
-			it++;
-		}
-		if (digits != signs)
-			return (error(ERR_SYNT, ""));
-		digits = 0;
-		signs = 0;
-	}
-	return true;
+const char* RPN::invalidToken::what() const throw()
+{
+	return ("Invalid token. Allowed: +, -, *, /, 0-9");
 }
 
-static long solveSign(std::list<std::string>::iterator a, std::list<std::string>::iterator b, char s)
+const char* RPN::invalidSyntax::what() const throw()
 {
-	long al = atol(a->c_str());
-	long bl = atol(b->c_str());
-	switch (s) {
-		case ADD:
-			return al + bl;
-		case SUBSTRACT:
-			return al - bl;
-		case MULTIPLY:
-			return al * bl;
-		case DIVIDE:
-			if (bl == 0)
-				throw std::out_of_range("Cannot divide by zero");
-			return al / bl;
-	}
-	return 0;
+	return ("Syntax is invalid.");
+}
+
+const char* RPN::divisionByZero::what() const throw()
+{
+	return ("Division by 0 not allowed");
 }

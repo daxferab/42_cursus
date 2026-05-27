@@ -1,7 +1,8 @@
 #ifndef RPN_HPP
 #define RPN_HPP
 
-#include <list>
+#include <exception>
+#include <stack>
 #include <string>
 
 #define RED "\033[31m"
@@ -10,17 +11,30 @@
 #define MULTIPLY '*'
 #define DIVIDE '/'
 
-typedef enum e_error
-{
-	ERR_ARG,
-	ERR_FORB_TOK,
-	ERR_SYNT,
-	ERR_ZERO_DIV
-} t_error;
+class RPN {
+	private:
+		std::stack<int> _result;
+	public:
+		RPN();
+		RPN(const RPN& other);
+		RPN &operator=(const RPN&other);
 
-bool		error(int i, std::string token);
+		int	solveOperation(char	*operation);
+		void evaluate(char sign);
 
-bool		parseInput(std::list<std::string> &operation, std::string line);
-std::string	solveOperation(std::list<std::string> &operation);
+		class invalidToken : public std::exception {
+			virtual const char* what() const throw();
+		};
+
+		class invalidSyntax : public std::exception {
+			virtual const char* what() const throw();
+		};
+
+		class divisionByZero : public std::exception {
+			virtual const char* what() const throw();
+		};
+};
+
+bool isOperator(char token);
 
 #endif
