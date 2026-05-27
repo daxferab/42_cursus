@@ -3,7 +3,6 @@
 
 #include <exception>
 #include <stack>
-#include <string>
 
 #define RED "\033[31m"
 #define ADD '+'

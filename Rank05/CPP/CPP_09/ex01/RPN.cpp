@@ -1,7 +1,6 @@
 #include "include/RPN.hpp"
 #include <exception>
 #include <sstream>
-#include <iostream>
 
 // ---------------------------------------------------------------- Constructors
 
