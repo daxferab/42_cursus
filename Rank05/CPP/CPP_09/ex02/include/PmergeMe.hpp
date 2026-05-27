@@ -5,7 +5,7 @@
 
 #define RED "\033[31m"
 
-const	std::string g_error[] = 
+const	std::string g_error[] =
 {
 	"usage <./PmergeMe input>",
 	"argument must be a positive integer sequence",
@@ -20,6 +20,8 @@ typedef enum e_error
 } t_error;
 
 bool	error(int i);
-bool	vectorContainer(char **list);
+bool	printInts(int size, char **args);
+
+bool	vectorContainer(int size, char **list);
 
 #endif

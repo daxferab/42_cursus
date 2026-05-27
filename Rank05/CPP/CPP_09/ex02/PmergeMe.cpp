@@ -1,7 +1,10 @@
 #include "include/PmergeMe.hpp"
 
+#include <cctype>
+#include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <climits>
 
 bool error(int i)
 {
@@ -9,23 +12,20 @@ bool error(int i)
 	return false;
 }
 
-// ------------------------------ First container
-
-bool	vectorContainer(char **list)
+bool	printInts(int size, char **args)
 {
-	time_t	*timer = 0;
-	time(timer);
-	// int i = 0;
+	int j;
 
-	// while (list[i])
-	// {
-	// 	if (!isNum(list[i]))
-	// 		return(error(ERR_SEQUENCE));
-	// 	if (isRepeated(list[i]))
-	// }
-	(void)list;
-	std::cout << timer << std::endl;
-	return false;
+	for (int i = 1; i < size; i++)
+	{
+		j = 0;
+		if (std::atol(args[i]) > INT_MAX) return false;
+		while (args[i][j])
+			if (!isdigit(args[i][j++])) return(false);
+	}
+	std::cout << "Before: ";
+	for (int i = 1; i < size; i++)
+		std::cout << args[i] << " ";		
+	std::cout << std::endl;
+	return true;
 }
-
-// ------------------------------ Second container
