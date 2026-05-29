@@ -11,6 +11,7 @@ class BitcoinDatabase {
 		BitcoinDatabase();
 		BitcoinDatabase(const BitcoinDatabase& other);
 		BitcoinDatabase &operator=(const BitcoinDatabase& other);
+		~BitcoinDatabase();
 
 		void	appendEntry(std::string key, float value);
 		float	returnValue(std::string	key);

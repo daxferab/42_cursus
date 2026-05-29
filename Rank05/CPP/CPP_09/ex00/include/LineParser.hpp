@@ -12,6 +12,7 @@ class LineParser {
 		LineParser();
 		LineParser(const LineParser& other);
 		LineParser &operator=(const LineParser& other);
+		~LineParser();
 
 		static t_pair	validLineFormat(std::string line);
 		static bool		checkDate(std::string date);

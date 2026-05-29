@@ -11,6 +11,7 @@ RPN &RPN::operator=(const RPN &other) {
 		_result = other._result;
 	return *this;
 }
+RPN::~RPN() {}
 
 // ------------------------------------------------------------ Member functions
 

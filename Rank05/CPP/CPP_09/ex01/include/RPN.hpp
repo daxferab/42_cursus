@@ -17,6 +17,7 @@ class RPN {
 		RPN();
 		RPN(const RPN& other);
 		RPN &operator=(const RPN&other);
+		~RPN();
 
 		int	solveOperation(char	*operation);
 		void evaluate(char sign);

@@ -12,6 +12,8 @@ BitcoinDatabase &BitcoinDatabase::operator=(const BitcoinDatabase& other) {
 	return (*this);
 }
 
+BitcoinDatabase::~BitcoinDatabase() {}
+
 // ------------------------------------------------------------ MEMBER FUNCTIONS
 
 void	BitcoinDatabase::appendEntry(std::string key, float value)
