@@ -5,6 +5,7 @@
 #include <exception>
 #include <stdexcept>
 #include <vector>
+#include <iostream>
 
 // ----------------------------------------------------------------- VECTOR SORT
 
@@ -19,13 +20,33 @@ std::vector<int> PMergeMe::sortVector(int size, char **seq)
 	}
 	for (int i = 1; i < size; i++)
 		vector.push_back(atol(seq[i]));
-	mergeInsert(vector);
+	mergeInsert(vector, vector.size());
 	return (vector);
 }
 
-void	PMergeMe::mergeInsert(std::vector<int> &vect)
+void	PMergeMe::mergeInsert(std::vector<int> &vect, int size)
 {
-	
+	std::vector<int> main;
+	std::vector<int> pend;
+	int i = 0;
+
+	while (i < size - 1)
+	{
+		if (vect[i] < vect[i + 1])
+		{
+			pend.push_back(vect[i]);
+			main.push_back(vect[i + 1]);
+		} else {
+			pend.push_back(vect[i + 1]);
+			main.push_back(vect[i]);
+		}
+		i += 2;
+	}
+	if (size % 2 != 0)
+		main.push_back(vect[i]);
+	vect = main;
+	if (vect.size() > 1)
+		mergeInsert(vect, vect.size());
 }
 
 // ------------------------------------------------------------------- LIST SORT
@@ -41,14 +62,14 @@ std::list<int> PMergeMe::sortList(int size, char **seq)
 	}
 	for (int i = 1; i < size; i++)
 		list.push_back(atol(seq[i]));
-	mergeInsert(list);
+	//mergeInsert(list, list.size());
 	return (list);
 }
 
-void	PMergeMe::mergeInsert(std::list<int> &list)
-{
+// void	PMergeMe::mergeInsert(std::list<int> &list, int size)
+// {
 	
-}
+// }
 
 // ---------------------------------------------------------------------- Helper
 

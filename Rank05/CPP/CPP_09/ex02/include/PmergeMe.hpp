@@ -4,8 +4,6 @@
 #include <vector>
 #include <list>
 
-#define RED "\033[31m"
-
 class PMergeMe {
 	public:
 		static std::vector<int> sortVector(int size, char **seq);
@@ -18,8 +16,8 @@ class PMergeMe {
 		~PMergeMe();
 
 		static void checkSequence(char **seq, int size);
-		static void	mergeInsert(std::vector<int> &vect);
-		static void	mergeInsert(std::list<int> &list);
+		static void	mergeInsert(std::vector<int> &vect, int size);
+		static void	mergeInsert(std::list<int> &list, int size);
 };
 
 #endif

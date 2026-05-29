@@ -9,7 +9,7 @@ int main(int ac, char **av)
 {
 	if (ac < 2)
 	{
-		std::cerr << "usage <./PmergeMe input>" << std::endl;
+		std::cerr << RED << "usage <./PmergeMe input>" << std::endl;
 		return 1;
 	}
 
