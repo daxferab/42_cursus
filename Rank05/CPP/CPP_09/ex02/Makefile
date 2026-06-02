@@ -1,10 +1,10 @@
 NAME = PmergeMe
 
 CXX= c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 OBJ_DIR = obj
 
-SRC = main.cpp PmergeMe.cpp Timer.cpp print.cpp
+SRC = main.cpp PmergeMe.cpp Timer.cpp print.cpp Jacobsthal.cpp
 
 OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 

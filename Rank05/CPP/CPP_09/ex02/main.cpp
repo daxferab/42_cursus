@@ -1,4 +1,5 @@
 #include "include/PmergeMe.hpp"
+#include "include/Jacobsthal.hpp"
 #include "include/Timer.hpp"
 #include "include/print.hpp"
 #include <exception>
@@ -7,9 +8,9 @@
 
 int main(int ac, char **av)
 {
-	if (ac < 2)
+	if (ac <= 2)
 	{
-		std::cerr << RED << "usage <./PmergeMe input>" << std::endl;
+		std::cerr << RED << "usage <./PmergeMe sequence>" << std::endl;
 		return 1;
 	}
 

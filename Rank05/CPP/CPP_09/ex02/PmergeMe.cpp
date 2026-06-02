@@ -1,11 +1,14 @@
 #include "include/PmergeMe.hpp"
+#include "include/Jacobsthal.hpp"
 
+#include <algorithm>
 #include <climits>
 #include <cstdlib>
 #include <exception>
+#include <iterator>
+#include <list>
 #include <stdexcept>
 #include <vector>
-#include <iostream>
 
 // ----------------------------------------------------------------- VECTOR SORT
 
@@ -18,6 +21,7 @@ std::vector<int> PMergeMe::sortVector(int size, char **seq)
 	} catch (std::exception &e) {
 		throw ;
 	}
+	vector.reserve(size - 1);
 	for (int i = 1; i < size; i++)
 		vector.push_back(atol(seq[i]));
 	mergeInsert(vector, vector.size());
@@ -26,10 +30,12 @@ std::vector<int> PMergeMe::sortVector(int size, char **seq)
 
 void	PMergeMe::mergeInsert(std::vector<int> &vect, int size)
 {
-	std::vector<int> main;
-	std::vector<int> pend;
-	int i = 0;
+	std::vector<int>	main;
+	std::vector<int>	pend;
+	int					i = 0;
 
+	main.reserve((size + 1) / 2);
+	main.reserve(size / 2);
 	while (i < size - 1)
 	{
 		if (vect[i] < vect[i + 1])
@@ -44,9 +50,30 @@ void	PMergeMe::mergeInsert(std::vector<int> &vect, int size)
 	}
 	if (size % 2 != 0)
 		main.push_back(vect[i]);
-	vect = main;
-	if (vect.size() > 1)
-		mergeInsert(vect, vect.size());
+
+	if (main.size() > 1)
+		mergeInsert(main, main.size());
+
+	insertMain(main, pend);
+	vect.swap(main);
+}
+
+void PMergeMe::insertMain(std::vector<int>& main, std::vector<int>& pend)
+{
+	std::vector<int>	order = Jacobsthal::getFullSequence(pend.size());
+	int					element;
+
+	for (size_t i = 0; i < order.size(); i++)
+	{
+		element = pend[order[i] - 1];
+		insert(element, main);
+	}
+}
+
+void PMergeMe::insert(int element, std::vector<int> &main)
+{
+	std::vector<int>::iterator pos = std::upper_bound(main.begin(), main.end(), element);
+	main.insert(pos, element);
 }
 
 // ------------------------------------------------------------------- LIST SORT
@@ -62,14 +89,59 @@ std::list<int> PMergeMe::sortList(int size, char **seq)
 	}
 	for (int i = 1; i < size; i++)
 		list.push_back(atol(seq[i]));
-	//mergeInsert(list, list.size());
+	mergeInsert(list, list.size());
 	return (list);
 }
 
-// void	PMergeMe::mergeInsert(std::list<int> &list, int size)
-// {
-	
-// }
+void	PMergeMe::mergeInsert(std::list<int> &list, int size)
+{
+	std::list<int> main;
+	std::list<int> pend;
+	std::list<int>::iterator curr = list.begin();
+	std::list<int>::iterator next = curr;
+	int i = 0;
+
+	std::advance(next, 1);
+	while (i < size / 2)
+	{
+		if (*curr < *next)
+		{
+			pend.push_back(*curr);
+			main.push_back(*next);
+		} else {
+			pend.push_back(*next);
+			main.push_back(*curr);
+		}
+		std::advance(curr, 2);
+		std::advance(next, 2);
+		i++;
+	}
+	if (size % 2 != 0)
+		main.push_back(*curr);
+	list = main;
+	if (list.size() > 1)
+		mergeInsert(list, list.size());
+
+	insertMain(list, pend);
+}
+
+void PMergeMe::insertMain(std::list<int>& main, std::list<int>& pend)
+{
+    std::vector<int> order = Jacobsthal::getFullSequence(pend.size());
+
+    for (size_t i = 0; i < order.size(); ++i)
+    {
+        std::list<int>::iterator it = pend.begin();
+        std::advance(it, order[i] - 1);
+        insert(*it, main);
+    }
+}
+
+void PMergeMe::insert(int element, std::list<int> &main)
+{
+	std::list<int>::iterator pos = std::upper_bound(main.begin(), main.end(), element);
+	main.insert(pos, element);
+}
 
 // ---------------------------------------------------------------------- Helper
 

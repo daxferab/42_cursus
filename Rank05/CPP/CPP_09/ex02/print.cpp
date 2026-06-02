@@ -9,12 +9,12 @@ bool	printFormat(int size, char **args, std::vector<int> vect, double vtime, dou
 	std::cout << std::endl;
 
 	std::cout << "After: ";
-	for (std::vector<int>::iterator it = vect.begin(); it < vect.end();it++)
+	for (std::vector<int>::iterator it = vect.begin(); it != vect.end();it++)
 		std::cout << *it << " ";		
 	std::cout << std::endl;
 
 	std::cout << "Time to process a range of " << size - 1 << " elements with std::vector: " << vtime << " μs" << std::endl;
-
+	
 	std::cout << "Time to process a range of " << size - 1 << " elements with std::list: " << ltime << " μs" << std::endl;
 	return true;
 }
