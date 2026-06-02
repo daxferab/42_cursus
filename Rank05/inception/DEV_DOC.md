@@ -1,6 +1,6 @@
 # DEVELOPER DOCUMENTATION
 
-## Set uo the environment from scratch
+## Set up the environment from scratch
 
 ## Build and launch (with Makefile and Docker Compose)
 
