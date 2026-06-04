@@ -12,15 +12,15 @@
 
 class RPN {
 	private:
-		std::stack<int> _result;
+		std::stack<long> _result;
 	public:
 		RPN();
 		RPN(const RPN& other);
 		RPN &operator=(const RPN&other);
 		~RPN();
 
-		int	solveOperation(char	*operation);
-		void evaluate(char sign);
+		long	solveOperation(char	*operation);
+		void	evaluate(char sign);
 
 		class invalidToken : public std::exception {
 			virtual const char* what() const throw();
@@ -31,6 +31,10 @@ class RPN {
 		};
 
 		class divisionByZero : public std::exception {
+			virtual const char* what() const throw();
+		};
+
+		class outOfBounds : public std::exception {
 			virtual const char* what() const throw();
 		};
 };

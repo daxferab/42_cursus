@@ -1,6 +1,7 @@
 #include "include/RPN.hpp"
 #include <exception>
 #include <sstream>
+#include <climits>
 
 // ---------------------------------------------------------------- Constructors
 
@@ -15,7 +16,7 @@ RPN::~RPN() {}
 
 // ------------------------------------------------------------ Member functions
 
-int	RPN::solveOperation(char	*operation)
+long	RPN::solveOperation(char	*operation)
 {
 	std::stringstream	ss(operation);
 	std::string			token;
@@ -40,7 +41,11 @@ int	RPN::solveOperation(char	*operation)
 		}
 	}
 	if (_result.size() == 1)
-		return _result.top();
+	{
+		if (_result.top() >= INT_MIN && _result.top() <= INT_MAX)
+			return _result.top();
+		throw outOfBounds();
+	}
 	throw invalidSyntax();
 }
 
@@ -94,4 +99,9 @@ const char* RPN::invalidSyntax::what() const throw()
 const char* RPN::divisionByZero::what() const throw()
 {
 	return ("Division by 0 not allowed");
+}
+
+const char* RPN::outOfBounds::what() const throw()
+{
+	return ("Result is out of 'int' bounds");
 }
