@@ -10,7 +10,7 @@ NAME := miniRT
 NAME_CAPITAL := MiniRT
 
 CC := cc
-CFLAGS := -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS := -Wall -Wextra -Werror -o3
 
 #INCLUDE
 
