@@ -7,24 +7,6 @@ The goal is to create a shell that behaves like **bash**, handling commands, pip
 
 ---
 
-### 📂 Project Structure
-
-minishell/
-├── include/minishell.h    # Header file (.h) 
-├── src/                   # Source files (.c)
-│   ├── minishell.c        # Main program entry point
-│   ├── builtins/          # Built-in commands
-│   ├── parse/             # Command parsing
-│   ├── execution/         # Command execution
-│   ├── env/              # Environment management
-│   └── control/          # Signal and control flow
-├── libft/                # Libft library  
-├── .gitignore  
-├── Makefile              # Makefile to compile the project  
-└── README.md             # This file  
-
----
-
 ## 🛠️ How to Use
 
 ### 📦 Compilation
