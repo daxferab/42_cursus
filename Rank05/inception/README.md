@@ -23,7 +23,12 @@ There has to be one Dockerfile per container, and one docker-compose.yml that se
 Run `make` to set up the containers.
 
 ## Project description
-Set-up the web server with NGINX
+Set-up the web server with NGINX:
+	- Install NGINX
+	- The default server-client communication is HTTP, so we should install TLS to protect it and transform it into HTTPS
+	- To install TLS we need:
+		- Public certificate and private key
+		- Modify the nginx.conf file so it points to those certificates
 
 - **Virtual Machines vs Docker**
 A virtual machine is a software used to have a full OS inside of a host machine and completely isolated from it, while Docker is an environment that holds only the required dependencies that are needed from an application to work.
@@ -39,3 +44,5 @@ Docker is faster on startup than a VM and its portability is higher
 )\
 [Docker CLI Cheatsheet](https://docs.docker.com/get-started/docker_cheatsheet.pdf)
 [Inception guide](https://tuto.grademe.fr/inception/)
+[OpenSSL guide](https://docs.openssl.org/)
+[404 Error](https://stackoverflow.com/questions/57561236/how-nginx-process-404-fallback-in-try-files)
