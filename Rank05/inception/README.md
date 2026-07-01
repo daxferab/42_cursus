@@ -36,6 +36,9 @@ An VM has its own kernel, while Docker shares it with the host machine, which ma
 Docker is faster on startup than a VM and its portability is higher
 
 - **Secrets vs Environment variables**
+Environment variables are used for storing information that will be used by one or more containers.\
+Secrets are similar, but with them we let Docker know the info there is highly sensitive, and that it should be used carefuly and only when needed. They will not leave traces in logs and wont be visible for other users.
+
 - **Docker Network vs Host Network**
 - **Docker Volumes vs Bind Mount**
 ## Resources
