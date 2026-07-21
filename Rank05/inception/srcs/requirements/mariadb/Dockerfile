@@ -1,7 +1,10 @@
 FROM debian:bookworm
 
+# Update packages
+RUN apt-get update -y && apt-get upgrade -y
+
 # Install MariaDB and clear cache
-RUN apt-get update && apt-get install -y mariadb-server \
+RUN apt-get install -y mariadb-server \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Create directory for mysql to store files. (-p for making parent folders)
