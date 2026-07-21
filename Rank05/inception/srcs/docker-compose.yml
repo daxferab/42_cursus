@@ -3,4 +3,10 @@ services:
     build:
       context: requirements/nginx/
       dockerfile: Dockerfile
-   
+
+# We tell docker where secrets are located
+secrets:
+  db_password:
+    file: ../secrets/db_password.txt
+  db_root_password:
+    file: ../secrets/db_root_password.txt
