@@ -5,21 +5,33 @@
 # this is read by the standalone daemon and embedded servers
 [server]
 
-# this is only for the mysqld standalone daemon
+# ------------------------------------ EDITED ----------------------------------
+# this is only for the mysqld standalone daemon (this is what listens for connections)
 [mysqld]
 
-datadir = /var/lib/mysql
-socket  = /run/mysqld/mysqld.sock
-bind_address=*
+# Listens in all nework interfaces in port 3306 (standard)
+bind-address = 0.0.0.0
 port = 3306
-user = mysql
+
+# socket route (for local communications)
+socket = /var/run/mysqld/mysqld.sock
+
+# where the volume is stored
+datadir = /var/lib/mysql
+
+# where logs are saved (for debugging)
+log-error = /var/log/mysql/error.log
+
+# file to monitor the daemon
+pid-file = /var/run/mysqld/mysqld.pid
+
+# ------------------------------------------------------------------------------
 
 #
 # * Basic Settings
 #
 
 #user                    = mysql
-pid-file                = /run/mysqld/mysqld.pid
 basedir                 = /usr
 #datadir                 = /var/lib/mysql
 #tmpdir                  = /tmp
@@ -30,7 +42,6 @@ basedir                 = /usr
 
 # Instead of skip-networking the default is now to listen only on
 # localhost which is more compatible and is not less secure.
-bind-address            = 127.0.0.1
 
 #
 # * Fine Tuning
