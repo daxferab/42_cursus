@@ -4,14 +4,14 @@ VOLUME = /home/daxferna/data
 all: build up
 
 # Create volume directories in host
-$(VOLUMES)/mariadb:
-	mkdir -p $(VOLUMES)/mariadb
-$(VOLUMES)/wordpress:
-	mkdir -p $(VOLUMES)/wordpress
+$(VOLUME)/mariadb:
+	mkdir -p $(VOLUME)/mariadb
+$(VOLUME)/wordpress:
+	mkdir -p $(VOLUME)/wordpress
 
 # Build images (requires volume directories)
 # Calls compose, -f to specify route
-build: $(VOLUMES)/mariadb $(VOLUMES)/wordpress
+build: $(VOLUME)/mariadb $(VOLUME)/wordpress
 	docker compose -f $(COMPOSE_FILE) build
 
 # Start / stop containers (-d to run it in the background)
