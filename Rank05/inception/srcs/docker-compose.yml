@@ -61,11 +61,13 @@ volumes:
   mariadb: # volume name
     driver: local # stored locally in host
     driver_opts:
+      type: 'none' # default (mandatory for compilation
       o: 'bind'
       device: '/home/${LOGIN}/data/mariadb'
   wordpress:
     driver: local
     driver_opts:
+      type: 'none' # default (mandatory for compilation
       o: 'bind' # Stores volume in specified path -> "device:"
       device: '/home/${LOGIN}/data/wordpress' # Where to store
 
