@@ -12,22 +12,22 @@ $(VOLUME)/wordpress:
 # Build images (requires volume directories)
 # Calls compose, -f to specify route
 build: $(VOLUME)/mariadb $(VOLUME)/wordpress
-	docker compose -f $(COMPOSE_FILE) build
+	docker compose -f $(COMPOSE) build
 
 # Start / stop containers (-d to run it in the background)
 up:
-	docker compose -f $(COMPOSE_FILE) up -d
+	docker compose -f $(COMPOSE) up -d
 
 down:
-	docker compose -f $(COMPOSE_FILE) down
+	docker compose -f $(COMPOSE) down
 
 clean:
-	docker compose -f $(COMPOSE_FILE) down
+	docker compose -f $(COMPOSE) down
 	docker system prune -af
 
 fclean: clean
 	docker volume prune -f
-	sudo rm -rf $(DATA_DIR)
+	sudo rm -rf $(VOLUME)
 
 re: fclean all
 
