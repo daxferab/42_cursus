@@ -57,7 +57,7 @@ The distinction between **Docker volumes** and **bind mounts** primarily concern
 | **Performance** | Optimized (especially on Windows/macOS) | Depends on host filesystem |
 | **Use Case** | Production data persistence, backups | Development, code editing |
 
-In summary, use **volumes** for production data storage where you want Docker to handle the details, and use **bind mounts** when you need direct access to host files, typically during development.
+Use **volumes** for production data storage where you want Docker to handle the details, and use **bind mounts** when you need direct access to host files, typically during development.
 
 ## Resources
 - **Documentation:** \

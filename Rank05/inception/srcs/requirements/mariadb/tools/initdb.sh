@@ -8,7 +8,7 @@ echo "----------- MariaDB: Initializing... ----------"
 mkdir -p /var/lib/mysql /run/mysqld /var/log/mysql && chown -R mysql:mysql /var/lib/mysql /run/mysqld /var/log/mysql
 
 # Get credentials from secrets (automattically mounted in /run)
-SQL_PASSWORD=$(cat /run/secrets/db_password)
+SQL_PASSWORD=$(cat /run/secrets/db_user_password)
 SQL_ROOT_PASSWORD=$(cat /run/secrets/db_root_password)
 
 if [ ! -d "/var/lib/mysql/$SQL_DATABASE" ]; then # If db doesnt exist

@@ -1,16 +1,86 @@
+#---------------------------------- SERVICES -----------------------------------
 services:
-  nginx:
+ 	# ------------------------------- MARIADB
+  mariadb:
+    container_name: mariadb
     build:
-      context: requirements/nginx/
+      context: requirements/mariadb
       dockerfile: Dockerfile
+    networks:
+      - inception
+    volumes: # Where the volume is mounted, NOT stored
+      - mariadb:/var/lib/mysql
+    restart: always # Restart if it goes down
+    env_file: .env
+    secrets:
+      - db_user_password
+      - db_root_password
 
-# We tell docker where secrets are located
+  # ------------------------------- NGNIX
+  nginx:
+    container_name: nginx
+    build:
+      context: requirements/nginx
+      dockerfile: Dockerfile
+    volumes: # Same as WP
+      - wordpress:/var/www/wordpress
+    networks:
+      - inception
+    depends_on: # Waits for WP to start
+      - wordpress
+    env_file: .env
+    ports: # Only entry from the outside (https)
+    - "443:443"
+    restart: always
+  # ------------------------------- WORDPRESS
+  wordpress:
+    container_name: wordpress
+    build:
+      context: requirements/wordpress
+      dockerfile: Dockerfile
+    volumes:
+      - wordpress:/var/www/wordpress
+    networks:
+      - inception
+    env_file: .env
+    secrets:
+      - db_user_password
+      - db_root_password
+      - wp_admin_password
+      - wp_user_password
+    depends_on: # Waits for DB to start
+      - mariadb
+    restart: always
+
+# Dependencies:
+# - WP depends on the DB because WP needs to connect to it
+# - Nginx depends on WP because it needs PHP to send requests
+
+#----------------------------------- VOLUMES -----------------------------------
+volumes:
+  mariadb: # volume name
+    driver: local # stored locally in host
+    driver_opts:
+      o: 'bind'
+      device: '/home/${LOGIN}/data/mariadb'
+  wordpress:
+    driver: local
+    driver_opts:
+      o: 'bind' # Stores volume in specified path -> "device:"
+      device: '/home/${LOGIN}/data/wordpress' # Where to store
+
+#----------------------------------- NETWORK -----------------------------------
+networks:
+  inception: # network name
+    driver: bridge # Set Docker network (NOT host network)
+
+#----------------------------------- SECRETS -----------------------------------
 secrets:
-  db_password:
+  db_user_password:
     file: ../secrets/db_password.txt
   db_root_password:
     file: ../secrets/db_root_password.txt
-  wp_password:
+  wp_user_password:
     file: ../secrets/wp_password.txt
   wp_admin_password:
     file: ../secrets/wp_admin_password.txt

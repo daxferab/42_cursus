@@ -5,10 +5,10 @@ echo "----------- Wordpress: Initializing... ----------"
 WP_PATH="/var/www/html"
 
 # Get credentials from secrets (automattically mounted in /run)
-SQL_PASSWORD=$(cat /run/secrets/db_password)
+SQL_PASSWORD=$(cat /run/secrets/db_user_password)
 SQL_ROOT_PASSWORD=$(cat /run/secrets/db_root_password)
 WP_ADMIN_PASSWORD=$(cat /run/secrets/wp_admin_password)
-WP_USER_PASSWORD=$(cat /run/secrets/wp_password)
+WP_USER_PASSWORD=$(cat /run/secrets/wp_user_password)
 
 # Ensure PHP runtime dir exists
 mkdir -p /run/php
@@ -24,7 +24,7 @@ done
 ## If config not set, run
 if [ ! -f wp-config.php ]; then
 
-	# creates wp-config.php
+	# creates wp-config.php (link wp to db)
 	wp config create \
 	--allow-root \				# Allows root access
 	--dbname=$SQL_DATABASE \
