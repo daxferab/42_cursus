@@ -5,9 +5,9 @@ all: build up
 
 # Create volume directories in host
 $(VOLUMES)/mariadb:
-	mkdir -p $(DOLUMES)/mariadb
+	mkdir -p $(VOLUMES)/mariadb
 $(VOLUMES)/wordpress:
-	mkdir -p $(DOLUMES)/wordpress
+	mkdir -p $(VOLUMES)/wordpress
 
 # Build images (requires volume directories)
 # Calls compose, -f to specify route
