@@ -3,9 +3,9 @@
 ## Services provided
 This infrastructure consists of three services running in isolated containers:
 
-- **Nginx**: Acts as the web server. It handles all incoming HTTPS traffic (port 443) and forwards requests to the WordPress container. It is configured to use TLSv1.2 or TLSv1.3.
 - **WordPress**: A PHP-FPM container that runs the WordPress application. It processes dynamic content and interacts with the database.
 - **MariaDB**: A database container that stores all WordPress data, including user information, posts, and configuration.
+- **Nginx**: Acts as the web server. It handles all incoming HTTPS traffic (port 443) and forwards requests to the WordPress container. It is configured to use TLSv1.2 or TLSv1.3.
 
 These services communicate over a private Docker network and persist data using named volumes.
 
