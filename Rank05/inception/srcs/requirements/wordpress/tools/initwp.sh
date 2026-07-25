@@ -38,7 +38,7 @@ if [ ! -f wp-config.php ]; then
 	--dbuser="$SQL_USER" \
 	--dbpass="$SQL_PASSWORD" \
 	--dbhost=mariadb:3306 \
-	--path='$WP_PATH'
+	--path="$WP_PATH"
 
 # finish initial WP instalation (adds admin)
 	wp core install \
@@ -48,7 +48,7 @@ if [ ! -f wp-config.php ]; then
 	--admin_user="$WP_ADMIN" \
 	--admin_password="$WP_ADMIN_PASSWORD" \
 	--admin_email="$WP_ADMIN_EMAIL" \
-	--path='$WP_PATH'
+	--path="$WP_PATH"
 
 # creates normal user
 	wp user create "$WP_USER" "$WP_USER_EMAIL" \
