@@ -9,7 +9,8 @@
 # this is only for the mysqld standalone daemon (this is what listens for connections)
 [mysqld]
 
-# Listens in all nework interfaces in port 3306 (standard)
+# Listens in all nework interfaces (0.0.0.0) so it can communicate outside the container
+# in port 3306 (standard)
 bind-address = 0.0.0.0
 port = 3306
 
