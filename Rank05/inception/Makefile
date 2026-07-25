@@ -6,8 +6,10 @@ all: build up
 # Create volume directories in host
 $(VOLUME)/mariadb:
 	mkdir -p $(VOLUME)/mariadb
+	chown -R mysql:mysql $(VOLUME)/mariadb
 $(VOLUME)/wordpress:
 	mkdir -p $(VOLUME)/wordpress
+	chown -R www-data:www-data $(VOLUME)/wordpress
 
 # Build images (requires volume directories)
 # Calls compose, -f to specify route

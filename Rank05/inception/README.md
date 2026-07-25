@@ -21,6 +21,8 @@ There has to be one Dockerfile per container, and one docker-compose.yml that se
 
 ## Instructions
 Run `make` to set up the containers.
+Run `make down` to turn the containers off
+Run `make fclean` to clear the containers and directories created in host
 
 ## Project description
 Set-up the web server with NGINX:
@@ -61,8 +63,9 @@ Use **volumes** for production data storage where you want Docker to handle the 
 
 ## Resources
 - **Documentation:** \
-[Docker docs](https://docs.docker.com/
-)\
+[Docker instalation in Debian VM](https://docs.docker.com/engine/install/debian/#install-using-the-repository)
+[Access VM through ssh](https://www.youtube.com/watch?v=KQbiii-EEQs)
+[Docker docs](https://docs.docker.com/)\
 [Docker CLI Cheatsheet](https://docs.docker.com/get-started/docker_cheatsheet.pdf)
 [Inception guide](https://tuto.grademe.fr/inception/)
 [OpenSSL guide](https://docs.openssl.org/)
