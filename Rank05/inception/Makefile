@@ -3,13 +3,13 @@ VOLUME = /home/daxferna/data
 
 all: build up
 
-# Create volume directories in host
+# Create volume directories in host, 999 us mysql UID, 33 is www-data UID
 $(VOLUME)/mariadb:
 	mkdir -p $(VOLUME)/mariadb
-	chown -R mysql:mysql $(VOLUME)/mariadb
+	sudo chown -R 999:999 $(VOLUME)/mariadb
 $(VOLUME)/wordpress:
 	mkdir -p $(VOLUME)/wordpress
-	chown -R www-data:www-data $(VOLUME)/wordpress
+	sudo chown -R 33:33 $(VOLUME)/wordpress
 
 # Build images (requires volume directories)
 # Calls compose, -f to specify route

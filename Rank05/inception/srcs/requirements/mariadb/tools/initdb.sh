@@ -45,5 +45,6 @@ fi
 
 echo "--------------- MariaDB: Started --------------"
 # Executes mysqld as PID 1
+# --user=mysql makes mysqld stop running as root and use mysql user (999)
 # Logs errors in log-error
-exec mysqld --log-warnings=1
+exec mysqld --user=mysql --log-warnings=1
