@@ -26,8 +26,11 @@ clean:
 	docker system prune -af
 
 fclean: clean
+	docker system prune -a
 	docker volume prune -f
 	sudo rm -rf $(VOLUME)
+	# Clean tmp files (free up space)
+	sudo rm -rf /tmp/*
 
 re: fclean all
 
