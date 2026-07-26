@@ -26,8 +26,7 @@ clean:
 	docker system prune -af
 
 fclean: clean
-	docker system prune -a
-	docker volume prune -f
+	docker volume rm srcs_mariadb srcs_wordpress 2>/dev/null || true
 	sudo rm -rf $(VOLUME)
 	# Clean tmp files (free up space)
 	sudo rm -rf /tmp/*
