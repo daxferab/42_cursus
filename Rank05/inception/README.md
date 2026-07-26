@@ -1,7 +1,8 @@
 *This project has been created as a part of the 42 curriculum by daxferna*
 # 🐋 Inception 🐋
 ## Description
-This project consists on creating a small WordPress blog using Docker.\
+This project consists on creating a small WordPress blog using Docker.
+
 It must consist on these three containers:
 - NGINX: with TLSv1.2 or TLSv1.3 only. (This will be the only entrypoint through the port 443 (https))
 - MariaDB: without NGINX
@@ -11,10 +12,11 @@ There must also be two named volumes that contain:
 - The WordPress database (with an admin and a regular user)
 - The WordPress website files
 
-The use of Docker Hub is forbidden.\
+The use of Docker Hub is forbidden.
 
 It's also required to set up a docket-network, in order for the containers to communicate between each other\
-The domain (pointing to localhost) must be `login.42.fr`\
+The domain (pointing to localhost) must be `login.42.fr`
+
 There has to be one Dockerfile per container, and one docker-compose.yml that sets them up. Everything must be executed using a Makefile.
 
 ## Instructions
@@ -63,11 +65,11 @@ The steps followed to create this project were:
 
 - **Docker Volumes vs Bind Mounts**
 
-| Docker Volumes | Bind Mounts |
-| - | - |
-| Created on container start | Pre-existing folder in host filesystem |
-| Hidden in Docker filesystem | Stored in path specified by user |
-| High portability | Low portability |
+	| Docker Volumes | Bind Mounts |
+	| - | - |
+	| Created on container start | Pre-existing folder in host filesystem |
+	| Hidden in Docker filesystem | Stored in path specified by user |
+	| High portability | Low portability |
 
 ## Resources
 - **Documentation:** \
@@ -79,7 +81,7 @@ The steps followed to create this project were:
 [Docker CLI Cheatsheet](https://docs.docker.com/get-started/docker_cheatsheet.pdf)\
 [Inception guide](https://tuto.grademe.fr/inception/)\
 [OpenSSL guide](https://docs.openssl.org/)\
-[404 Error](https://stackoverflow.com/questions/57561236/how-nginx-process-404-fallback-in-try-files)\
+[404 Error](https://stackoverflow.com/questions/57561236/how-nginx-process-404-fallback-in-try-files)
 
 - **AI usage** \
 Used to understand concepts and complex commands
