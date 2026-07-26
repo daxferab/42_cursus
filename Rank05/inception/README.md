@@ -1,28 +1,33 @@
 *This project has been created as a part of the 42 curriculum by daxferna*
 # 🐋 Inception 🐋
 ## Description
-The **Inception** project consists on creating 3 Docker containers and 2 volumes within a virtual machine.\
-The use of Docker Hub is forbidden, the base of each container must be the penultimate stable version of Debian or Alpine.\
-These containers must be set-up simultaneously using Docker Compose, and everything must be executed using a Makefile.\
-The containers and it's requirements are:
+This project consists on creating a small Wordpress blog using Docker.\
+It must consist on these three containers:
 - NGINX: with TLSv1.2 or TLSv1.3 only. (This will be the only entrypoint through the port 443 (https))
 - MariaDB: without NGINX
 - Wordpress: with phpfpm configured. Without NGINX
 
-The volumes must be named volumes and they must contain:
-- First vol: the Wordpress database
-- Second vol: the Wordpress website files
+There must also be two named volumes that contain:
+- The Wordpress database (with an admin and a regular user)
+- The Wordpress website files
 
-They must be available from /home/login/data from the host machine\
+The use of Docker Hub is forbidden.\
+
 It's also required to set up a docket-network, in order for the containers to communicate between each other\
-The wordpress db must have an admin and a regular user.\
-The domain (pointing to localhost) must be login.42.fr\
-There has to be one Dockerfile per container, and one docker-compose.yml that sets up everything.
+The domain (pointing to localhost) must be `login.42.fr`\
+There has to be one Dockerfile per container, and one docker-compose.yml that sets them up. Everything must be executed using a Makefile.
 
 ## Instructions
-Run `make` to set up the containers.
-Run `make down` to turn the containers off
-Run `make fclean` to clear the containers and directories created in host
+To set up the containers, one must follow these simple steps:
+- Paste a properly configured **secrets** folder in root
+- Add an **.env** file under the srcs/ folder
+- Run `make` to set up the containers.
+	- This can also be done in two steps; `make build` to build the image and `make up` to start the container
+
+Once the containers are running, the Wordpress page can be accessed through https://localhost, or any other domain name properly set in `/etc/hosts`
+
+- Run `make down` to turn the containers off
+- Run `make clean` or `make fclean` to clear the containers or the containers and directories
 
 ## Project description
 Set-up the web server with NGINX:
@@ -72,5 +77,5 @@ Use **volumes** for production data storage where you want Docker to handle the 
 [404 Error](https://stackoverflow.com/questions/57561236/how-nginx-process-404-fallback-in-try-files)
 
 -**AI usage** \
-Used to understand concepts
+Used to understand concepts and complex commands
 None of the code within this repo is AI generated
