@@ -58,18 +58,18 @@ services:
 
 #----------------------------------- VOLUMES -----------------------------------
 volumes:
-  mariadb: # volume name
+  mariadb: # volume name (if it was bind mount, this would be a path)
     driver: local # stored locally in host
     driver_opts:
-      type: 'none' # default (mandatory for compilation
-      o: 'bind'
+      type: 'none' # default (mandatory for compilation)
+      o: 'bind' # Stores volume in specified path -> "device:"
       device: '/home/${LOGIN}/data/mariadb'
   wordpress:
     driver: local
     driver_opts:
-      type: 'none' # default (mandatory for compilation
-      o: 'bind' # Stores volume in specified path -> "device:"
-      device: '/home/${LOGIN}/data/wordpress' # Where to store
+      type: 'none'
+      o: 'bind'
+      device: '/home/${LOGIN}/data/wordpress'
 
 #----------------------------------- NETWORK -----------------------------------
 networks:
