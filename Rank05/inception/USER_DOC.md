@@ -11,15 +11,20 @@ These services communicate over a private Docker network and persist data using 
 
 ## Starting and Stopping the Project
 
-Make sure you are inside the project directory and have a valid `.env` (in srcs) and a `secrets\` folder in root.
+To set up the containers, one must follow these simple steps:
+- Paste a properly configured **secrets** folder in root
+- Add an **.env** file under the srcs/ folder
+- Run `make` to set up the containers.
+	- This can also be done in two steps; `make build` to build the image and `make up` to start the container
 
-Execute `make` to build and run the services\
-Execute `make up` run the services (with already built images)\
-Execute `make down` to stop the services\
+- Run `make down` to turn the containers off
+- Run `make clean` or `make fclean` to clear the containers or the containers and directories
 
 ## Access the website and the admin panel
 
-Go to https://daxferna.42.fr once the service is started\
+Once the containers are running, the WordPress page can be accessed through https://localhost, or any other domain name properly set in `/etc/hosts`
+
+To access the admin panel, simply go to `https://localhost/wp-admin`
 
 ## Locate and manage credentials
 
