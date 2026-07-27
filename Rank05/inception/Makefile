@@ -1,36 +1,32 @@
-COMPOSE = srcs/docker-compose.yml
-VOLUME = /home/daxferna/data
+COMPOSE_PATH = ./srcs/docker-compose.yml
+VOLUMES_PATH = /home/daxferna/data
 
-all: build up
+all : setup
+	sudo docker compose -f $(COMPOSE_PATH) up --build -d
 
-# Create volume directories in host
-$(VOLUME)/mariadb:
-	mkdir -p $(VOLUME)/mariadb
-$(VOLUME)/wordpress:
-	mkdir -p $(VOLUME)/wordpress
+# Create volume folders and set permissions
+setup:
+	sudo mkdir -p $(VOLUMES_PATH)/mariadb
+	sudo mkdir -p $(VOLUMES_PATH)/wordpress
+	sudo chown -R 777 $(VOLUMES_PATH)/mariadb
+	sudo chown -R 777 $(VOLUMES_PATH)/wordpress
 
-# Build images (requires volume directories)
-# Calls compose, -f to specify route
-build: $(VOLUME)/mariadb $(VOLUME)/wordpress
-	docker compose -f $(COMPOSE) build
-
-# Start / stop containers (-d to run it in the background)
-up:
-	docker compose -f $(COMPOSE) up -d
+stop:
+	sudo docker compose -f $(COMPOSE_PATH) stop
 
 down:
-	docker compose -f $(COMPOSE) down
+	sudo docker compose -f $(COMPOSE_PATH) down
+
+up:
+	sudo docker compose -f $(COMPOSE_PATH) up -d
 
 clean:
-	docker compose -f $(COMPOSE) down
-	docker system prune -af
+	sudo docker compose -f $(COMPOSE_PATH) down -v
 
 fclean: clean
-	docker volume rm srcs_mariadb srcs_wordpress 2>/dev/null || true
-	sudo rm -rf $(VOLUME)
-	# Clean tmp files (free up space)
-	sudo rm -rf /tmp/*
+	@sudo rm -rf $(VOLUMES_PATH)
+	sudo docker system prune -af
 
 re: fclean all
 
-.PHONY: all build up down clean fclean re
+.PHONY: all setup stop down clean fclean re
