@@ -1,0 +1,170 @@
+----------------------------------------------------- CON FSANITIZE -----------------------------------------------------------
+Connect client, join channel, quit channel
+WHO #a
+QUIT :Leaving
+:Pablo PART #a :Leaving
+ERROR :Client disconnected
+Client <Pablo> disconnected
+^C
+------------- THISCORD SERVER CLOSED! ------------% 
+
+----------------------------------------------------- SIN FSANITIZE -----------------------------------------------------------
+Connect client, join channel, quit channel
+WHO #a
+QUIT :Leaving
+:Pablo PART #a :Leaving
+[1]    92222 segmentation fault (core dumped)  ./ircserv 6667 pass
+
+----------------------------------------------------- CON VALGRIND -----------------------------------------------------------
+✗ valgrind ./ircserv 6667 pass
+==93395== Memcheck, a memory error detector
+==93395== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==93395== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==93395== Command: ./ircserv 6667 pass
+==93395==
+---------------- THISCORD RUNNING ----------------
+Client 5 connected
+CAP LS 302
+PASS pass
+NICK Pablo
+USER Noone 0 * :realname
+:Thiscord 001 Pablo :Welcome to the Thiscord Network, Pablo
+:Thiscord 005 Pablo CHANMODES=o,,kl,it :are supported by this server
+JOIN #a
+:Pablo JOIN #a
+:Thiscord 353 Pablo = #a :@Pablo
+:Thiscord 366 Pablo #a :End of /NAMES list
+MODE #a
+:Thiscord 324 Pablo #a +t
+WHO #a
+QUIT :Leaving
+:Pablo PART #a :Leaving
+==93395== Invalid read of size 8
+==93395==    at 0x4948134: std::_Rb_tree_increment(std::_Rb_tree_node_base*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+==93395==    by 0x11DEB6: std::_Rb_tree_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >::operator++() (stl_tree.h:287)
+==93395==    by 0x11A13E: Server::quitClient(Client&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (Server.cpp:372)
+==93395==    by 0x111B4C: CommandHandler::_quit(Message const&, Client&, Server&) (CommandHandler.cpp:161)
+==93395==    by 0x110B73: CommandHandler::execCommand(Message&, Client&, Server&) (CommandHandler.cpp:48)
+==93395==    by 0x11C5F5: Server::_handleLine(Client&, char*, int) (Server.cpp:608)
+==93395==    by 0x11C427: Server::_readFd(int) (Server.cpp:592)
+==93395==    by 0x11BD87: Server::_eventLoop() (Server.cpp:533)
+==93395==    by 0x115531: Server::start(char*) (Server.cpp:47)
+==93395==    by 0x10BD61: main (main.cpp:17)
+==93395==  Address 0x4e36098 is 24 bytes inside a block of size 312 free'd
+==93395==    at 0x484A164: operator delete(void*) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==93395==    by 0x120C25: std::__new_allocator<std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::deallocate(std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >*, unsigned long) (new_allocator.h:172)
+==93395==    by 0x1204A6: deallocate (alloc_traits.h:150)
+==93395==    by 0x1204A6: std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::_M_put_node(std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >*) (stl_tree.h:567)
+==93395==    by 0x11F2C5: std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::_M_drop_node(std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >*) (stl_tree.h:634)
+==93395==    by 0x12027F: std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::_M_erase_aux(std::_Rb_tree_const_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >) (stl_tree.h:2496)
+==93395==    by 0x11F0D4: std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::erase(std::_Rb_tree_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >) (stl_tree.h:1218)
+==93395==    by 0x11E438: std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Channel, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::erase(std::_Rb_tree_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >) (stl_map.h:1103)
+==93395==    by 0x11CFFE: Server::_deleteChannel(Channel&) (Server.cpp:690)
+==93395==    by 0x1193C8: Server::partChannel(Client&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (Server.cpp:318)
+==93395==    by 0x11A12F: Server::quitClient(Client&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (Server.cpp:374)
+==93395==    by 0x111B4C: CommandHandler::_quit(Message const&, Client&, Server&) (CommandHandler.cpp:161)
+==93395==    by 0x110B73: CommandHandler::execCommand(Message&, Client&, Server&) (CommandHandler.cpp:48)
+==93395==  Block was alloc'd at
+==93395==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==93395==    by 0x12112E: std::__new_allocator<std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::allocate(unsigned long, void const*) (new_allocator.h:151)
+==93395==    by 0x120E55: allocate (alloc_traits.h:140)
+==93395==    by 0x120E55: std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::_M_get_node() (stl_tree.h:563)
+==93395==    by 0x120B73: std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::_M_create_node(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> const&) (stl_tree.h:585)
+==93395==    by 0x120899: std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >* std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::_Alloc_node::operator()<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> const&) const (stl_tree.h:531)
+==93395==    by 0x120180: std::_Rb_tree_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::_M_insert_<std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::_Alloc_node>(std::_Rb_tree_node_base*, std::_Rb_tree_node_base*, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> const&, std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::_Alloc_node&) (stl_tree.h:1831)
+==93395==    by 0x11F01A: std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::_M_insert_unique(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> const&) (stl_tree.h:2176)
+==93395==    by 0x11E40E: std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Channel, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::insert(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> const&) (stl_map.h:836)
+==93395==    by 0x11CF2D: Server::_addChannel(Channel const&) (Server.cpp:685)
+==93395==    by 0x11695A: Server::joinChannel(Client&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (Server.cpp:156)
+==93395==    by 0x110D5E: CommandHandler::_join(Message const&, Client&, Server&) (CommandHandler.cpp:78)
+==93395==    by 0x110AB8: CommandHandler::execCommand(Message&, Client&, Server&) (CommandHandler.cpp:27)
+==93395==
+==93395== Invalid read of size 8
+==93395==    at 0x4948150: std::_Rb_tree_increment(std::_Rb_tree_node_base*) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+==93395==    by 0x11DEB6: std::_Rb_tree_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >::operator++() (stl_tree.h:287)
+==93395==    by 0x11A13E: Server::quitClient(Client&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (Server.cpp:372)
+==93395==    by 0x111B4C: CommandHandler::_quit(Message const&, Client&, Server&) (CommandHandler.cpp:161)
+==93395==    by 0x110B73: CommandHandler::execCommand(Message&, Client&, Server&) (CommandHandler.cpp:48)
+==93395==    by 0x11C5F5: Server::_handleLine(Client&, char*, int) (Server.cpp:608)
+==93395==    by 0x11C427: Server::_readFd(int) (Server.cpp:592)
+==93395==    by 0x11BD87: Server::_eventLoop() (Server.cpp:533)
+==93395==    by 0x115531: Server::start(char*) (Server.cpp:47)
+==93395==    by 0x10BD61: main (main.cpp:17)
+==93395==  Address 0x4e36088 is 8 bytes inside a block of size 312 free'd
+==93395==    at 0x484A164: operator delete(void*) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==93395==    by 0x120C25: std::__new_allocator<std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::deallocate(std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >*, unsigned long) (new_allocator.h:172)
+==93395==    by 0x1204A6: deallocate (alloc_traits.h:150)
+==93395==    by 0x1204A6: std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::_M_put_node(std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >*) (stl_tree.h:567)
+==93395==    by 0x11F2C5: std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::_M_drop_node(std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >*) (stl_tree.h:634)
+==93395==    by 0x12027F: std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::_M_erase_aux(std::_Rb_tree_const_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >) (stl_tree.h:2496)
+==93395==    by 0x11F0D4: std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::erase(std::_Rb_tree_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >) (stl_tree.h:1218)
+==93395==    by 0x11E438: std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Channel, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::erase(std::_Rb_tree_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >) (stl_map.h:1103)
+==93395==    by 0x11CFFE: Server::_deleteChannel(Channel&) (Server.cpp:690)
+==93395==    by 0x1193C8: Server::partChannel(Client&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (Server.cpp:318)
+==93395==    by 0x11A12F: Server::quitClient(Client&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (Server.cpp:374)
+==93395==    by 0x111B4C: CommandHandler::_quit(Message const&, Client&, Server&) (CommandHandler.cpp:161)
+==93395==    by 0x110B73: CommandHandler::execCommand(Message&, Client&, Server&) (CommandHandler.cpp:48)
+==93395==  Block was alloc'd at
+==93395==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==93395==    by 0x12112E: std::__new_allocator<std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::allocate(unsigned long, void const*) (new_allocator.h:151)
+==93395==    by 0x120E55: allocate (alloc_traits.h:140)
+==93395==    by 0x120E55: std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::_M_get_node() (stl_tree.h:563)
+==93395==    by 0x120B73: std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::_M_create_node(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> const&) (stl_tree.h:585)
+==93395==    by 0x120899: std::_Rb_tree_node<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >* std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::_Alloc_node::operator()<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> const&) const (stl_tree.h:531)
+==93395==    by 0x120180: std::_Rb_tree_iterator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::_M_insert_<std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::_Alloc_node>(std::_Rb_tree_node_base*, std::_Rb_tree_node_base*, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> const&, std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::_Alloc_node&) (stl_tree.h:1831)
+==93395==    by 0x11F01A: std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel>, std::_Select1st<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::_M_insert_unique(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> const&) (stl_tree.h:2176)
+==93395==    by 0x11E40E: std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, Channel, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> > >::insert(std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, Channel> const&) (stl_map.h:836)
+==93395==    by 0x11CF2D: Server::_addChannel(Channel const&) (Server.cpp:685)
+==93395==    by 0x11695A: Server::joinChannel(Client&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (Server.cpp:156)
+==93395==    by 0x110D5E: CommandHandler::_join(Message const&, Client&, Server&) (CommandHandler.cpp:78)
+==93395==    by 0x110AB8: CommandHandler::execCommand(Message&, Client&, Server&) (CommandHandler.cpp:27)
+==93395==
+ERROR :Client disconnected
+Client <Pablo> disconnected
+==93395== Invalid read of size 8
+==93395==    at 0x49DE924: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::find(char const*, unsigned long, unsigned long) const (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+==93395==    by 0x11068D: Client::hasFullLine(int) const (Client.cpp:45)
+==93395==    by 0x11C698: Server::_handleLine(Client&, char*, int) (Server.cpp:604)
+==93395==    by 0x11C427: Server::_readFd(int) (Server.cpp:592)
+==93395==    by 0x11BD87: Server::_eventLoop() (Server.cpp:533)
+==93395==    by 0x115531: Server::start(char*) (Server.cpp:47)
+==93395==    by 0x10BD61: main (main.cpp:17)
+==93395==  Address 0x4e33f88 is 56 bytes inside a block of size 216 free'd
+==93395==    at 0x484A164: operator delete(void*) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==93395==    by 0x120BDB: std::__new_allocator<std::_Rb_tree_node<std::pair<int const, Client> > >::deallocate(std::_Rb_tree_node<std::pair<int const, Client> >*, unsigned long) (new_allocator.h:172)
+==93395==    by 0x120394: deallocate (alloc_traits.h:150)
+==93395==    by 0x120394: std::_Rb_tree<int, std::pair<int const, Client>, std::_Select1st<std::pair<int const, Client> >, std::less<int>, std::allocator<std::pair<int const, Client> > >::_M_put_node(std::_Rb_tree_node<std::pair<int const, Client> >*) (stl_tree.h:567)
+==93395==    by 0x11F1F3: std::_Rb_tree<int, std::pair<int const, Client>, std::_Select1st<std::pair<int const, Client> >, std::less<int>, std::allocator<std::pair<int const, Client> > >::_M_drop_node(std::_Rb_tree_node<std::pair<int const, Client> >*) (stl_tree.h:634)
+==93395==    by 0x11E5A6: std::_Rb_tree<int, std::pair<int const, Client>, std::_Select1st<std::pair<int const, Client> >, std::less<int>, std::allocator<std::pair<int const, Client> > >::_M_erase(std::_Rb_tree_node<std::pair<int const, Client> >*) (stl_tree.h:1938)
+==93395==    by 0x1206C1: std::_Rb_tree<int, std::pair<int const, Client>, std::_Select1st<std::pair<int const, Client> >, std::less<int>, std::allocator<std::pair<int const, Client> > >::clear() (stl_tree.h:1255)
+==93395==    by 0x11FA90: std::_Rb_tree<int, std::pair<int const, Client>, std::_Select1st<std::pair<int const, Client> >, std::less<int>, std::allocator<std::pair<int const, Client> > >::_M_erase_aux(std::_Rb_tree_const_iterator<std::pair<int const, Client> >, std::_Rb_tree_const_iterator<std::pair<int const, Client> >) (stl_tree.h:2507)
+==93395==    by 0x11EDD4: std::_Rb_tree<int, std::pair<int const, Client>, std::_Select1st<std::pair<int const, Client> >, std::less<int>, std::allocator<std::pair<int const, Client> > >::erase(int const&) (stl_tree.h:2521)
+==93395==    by 0x11DF48: std::map<int, Client, std::less<int>, std::allocator<std::pair<int const, Client> > >::erase(int const&) (stl_map.h:1119)
+==93395==    by 0x11A320: Server::quitClient(Client&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (Server.cpp:386)
+==93395==    by 0x111B4C: CommandHandler::_quit(Message const&, Client&, Server&) (CommandHandler.cpp:161)
+==93395==    by 0x110B73: CommandHandler::execCommand(Message&, Client&, Server&) (CommandHandler.cpp:48)
+==93395==  Block was alloc'd at
+==93395==    at 0x4846FA3: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==93395==    by 0x1210C1: std::__new_allocator<std::_Rb_tree_node<std::pair<int const, Client> > >::allocate(unsigned long, void const*) (new_allocator.h:151)
+==93395==    by 0x120CCD: allocate (alloc_traits.h:140)
+==93395==    by 0x120CCD: std::_Rb_tree<int, std::pair<int const, Client>, std::_Select1st<std::pair<int const, Client> >, std::less<int>, std::allocator<std::pair<int const, Client> > >::_M_get_node() (stl_tree.h:563)
+==93395==    by 0x120B31: std::_Rb_tree<int, std::pair<int const, Client>, std::_Select1st<std::pair<int const, Client> >, std::less<int>, std::allocator<std::pair<int const, Client> > >::_M_create_node(std::pair<int const, Client> const&) (stl_tree.h:585)
+==93395==    by 0x120841: std::_Rb_tree_node<std::pair<int const, Client> >* std::_Rb_tree<int, std::pair<int const, Client>, std::_Select1st<std::pair<int const, Client> >, std::less<int>, std::allocator<std::pair<int const, Client> > >::_Alloc_node::operator()<std::pair<int const, Client> >(std::pair<int const, Client> const&) const (stl_tree.h:531)
+==93395==    by 0x11FE5E: std::_Rb_tree_iterator<std::pair<int const, Client> > std::_Rb_tree<int, std::pair<int const, Client>, std::_Select1st<std::pair<int const, Client> >, std::less<int>, std::allocator<std::pair<int const, Client> > >::_M_insert_<std::_Rb_tree<int, std::pair<int const, Client>, std::_Select1st<std::pair<int const, Client> >, std::less<int>, std::allocator<std::pair<int const, Client> > >::_Alloc_node>(std::_Rb_tree_node_base*, std::_Rb_tree_node_base*, std::pair<int const, Client> const&, std::_Rb_tree<int, std::pair<int const, Client>, std::_Select1st<std::pair<int const, Client> >, std::less<int>, std::allocator<std::pair<int const, Client> > >::_Alloc_node&) (stl_tree.h:1831)
+==93395==    by 0x11EF1A: std::_Rb_tree<int, std::pair<int const, Client>, std::_Select1st<std::pair<int const, Client> >, std::less<int>, std::allocator<std::pair<int const, Client> > >::_M_insert_unique(std::pair<int const, Client> const&) (stl_tree.h:2176)
+==93395==    by 0x11E18A: std::map<int, Client, std::less<int>, std::allocator<std::pair<int const, Client> > >::insert(std::pair<int const, Client> const&) (stl_map.h:836)
+==93395==    by 0x11CD2A: Server::_addClient(int) (Server.cpp:679)
+==93395==    by 0x11BFF5: Server::_acceptClient() (Server.cpp:559)
+==93395==    by 0x11BC6F: Server::_eventLoop() (Server.cpp:526)
+==93395==    by 0x115531: Server::start(char*) (Server.cpp:47)
+==93395==
+^C
+------------- THISCORD SERVER CLOSED! ------------==93395==
+==93395== HEAP SUMMARY:
+==93395==     in use at exit: 0 bytes in 0 blocks
+==93395==   total heap usage: 93 allocs, 93 frees, 92,767 bytes allocated
+==93395==
+==93395== All heap blocks were freed -- no leaks are possible
+==93395==
+==93395== For lists of detected and suppressed errors, rerun with: -s
+==93395== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 0 from 0)
